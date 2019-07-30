@@ -9,7 +9,7 @@
 
 <body>
   <main id="app">
-    {{message}}    
+    {{todaysChallenge}}    
   </main>
 
   <!-- development version, includes helpful console warnings -->
@@ -18,7 +18,26 @@
   var app = new Vue({
     el: '#app',
     data: {
-      message: 'Hello Vue!'
+      challenges: [
+        { description: "Exempelchallenge 1", date: new Date(2019, 6, 29) },
+        { description: "Exempelchallenge 2", date: new Date(2019, 6, 30) },
+        { description: "Exempelchallenge 3", date: new Date(2019, 6, 31) }
+      ]
+    },
+    computed: {
+      todaysChallenge: function() {
+        let result;
+        let todaysDate = new Date();
+        for (var i=0; i<this.challenges.length; i++) {
+          let date = this.challenges[i].date;
+          if (todaysDate.getFullYear() === date.getFullYear() &&
+              todaysDate.getMonth() === date.getMonth() &&
+              todaysDate.getDate() === date.getDate()) {
+            result = this.challenges[i].description;
+          }
+        }
+        return result;
+      }
     }
   })
   </script>
