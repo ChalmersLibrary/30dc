@@ -32,6 +32,9 @@
         { description: "Exempelchallenge 3", date: new Date(2019, 6, 31), done: false }
       ]
     },
+    mounted: function() {
+      this.loadUserData();
+    },
     computed: {
       todaysChallenge: function() {
         let result;
@@ -49,7 +52,32 @@
     },
     methods: {
       imDone: function () {
-        this.todaysChallenge.done=true;
+        this.todaysChallenge.done = true;
+        this.saveUserData();
+      },
+      loadUserData: function() {
+        let userData = JSON.parse(localStorage.getItem("30daychallenge"));
+
+        if (userData) {
+          for (var i=0; i<userData.doneChallenges.length; i++) {
+            let doneChallengeIndex = userData.doneChallenges[i];
+            this.challenges[doneChallengeIndex].done = true;
+          }
+        }
+      },
+      saveUserData: function() {
+        let userData = {
+          doneChallenges: []
+        };
+
+        for (var i=0; i<this.challenges.length; i++) {
+          let challenge = this.challenges[i];
+          if (challenge.done) {
+            userData.doneChallenges.push(i);
+          }
+        }
+
+        localStorage.setItem("30daychallenge", JSON.stringify(userData));
       }
     }
   })
