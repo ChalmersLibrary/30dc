@@ -1,1 +1,68 @@
+html {
+  font-family: 'Merriweather', serif;
+  background-color: #075767;
+  color: #fcf9ec;
+  font-size: 16px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  color: #f2c230;
+}
+
+button {
+  background-color: #fcf9ec;
+  background-image: linear-gradient(#fefcf7, #f6eec9);
+  color: #075767;
+  border: none;
+  box-shadow: 0 0.5rem 0 #e0c13b;
+  border-radius: 0.5rem;
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: 'Merriweather', serif;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-bottom: 2rem;
+}
+
+button:active {
+  transform: translateY(0.2rem);
+  box-shadow: 0 0.3rem 0 #b0941c;
+}
+
+.challenge-text {
+  text-align: center;
+  margin-top: 0;
+}
+
+.history-element {
+  display: inline-block;
+  width: 20%;
+  background-color: #fcf9ec;
+  color: #075767;
+  box-sizing: border-box;
+  padding: 1.3rem;
+  text-align: center;
+  border: #075767;
+  border-style: solid;
+  border-width: 0.01rem;
+}
+
+.done {
+  background-color: aquamarine;
+}
 

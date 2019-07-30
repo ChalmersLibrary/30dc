@@ -2,6 +2,7 @@
 
 <head>
   <title>Express</title>
+  <link href="https://fonts.googleapis.com/css?family=Anton|Merriweather&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
@@ -10,7 +11,9 @@
 <body>
   <main id="app">
     <section v-show="!todaysChallenge.done">
-      {{todaysChallenge.description}}
+      <p class="challenge-text">
+        {{todaysChallenge.description}}
+      </p>
       <button type="button" @click="imDone">
         Jag har gjort dagens challenge!
       </button>
@@ -19,7 +22,9 @@
       BRA JOBBAT!
     </section>
     <section>
-      <section v-for="(challenge, index) in challenges">
+      <section class="history-element"
+          :class="{done:challenge.done}"
+          v-for="(challenge, index) in challenges">
         {{index+1}}
       </section>
     </section>
@@ -33,12 +38,12 @@
     data: {
       challenges: [
         { description: "Exempelchallenge 1", date: new Date(2019, 6, 29), done: false },
-        { description: "Exempelchallenge 2", date: new Date(2019, 6, 30), done: false },
-        { description: "Exempelchallenge 3", date: new Date(2019, 6, 31), done: false },
-        { description: "Exempelchallenge 4", date: new Date(2019, 7, 1), done: false },
-        { description: "Exempelchallenge 5", date: new Date(2019, 7, 2), done: false },
-        { description: "Exempelchallenge 6", date: new Date(2019, 7, 3), done: false },
-        { description: "Exempelchallenge 7", date: new Date(2019, 7, 4), done: false },
+        { description: "Ta 5-15 minuter och fundera över vad du har gjort idag.", date: new Date(2019, 6, 30), done: false },
+        { description: "Gå på en promenad med en eller flera kollegor.", date: new Date(2019, 6, 31), done: false },
+        { description: "Fråga en kollega som du inte arbetar så mycket med om vad hen gör.", date: new Date(2019, 7, 1), done: false },
+        { description: "Dela med dig av ditt bästa generella arbetstips och varför det funkar för dig.", date: new Date(2019, 7, 2), done: false },
+        { description: "Testa ett av dina kollegors bästa generella arbetstips.", date: new Date(2019, 7, 3), done: false },
+        { description: "Dela med dig av ditt favorit-arbetsverktyg och varför det är så bra.", date: new Date(2019, 7, 4), done: false },
         { description: "Exempelchallenge 8", date: new Date(2019, 7, 5), done: false },
         { description: "Exempelchallenge 9", date: new Date(2019, 7, 6), done: false },
         { description: "Exempelchallenge 10", date: new Date(2019, 7, 7), done: false },
