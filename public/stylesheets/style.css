@@ -3,6 +3,7 @@ html {
   background-color: #075767;
   color: #fcf9ec;
   font-size: 16px;
+  text-align: center;
 }
 
 html, body {
@@ -63,6 +64,6 @@ button:active {
 }
 
 .done {
-  background-color: aquamarine;
+  background-color: #f2c230;
 }
 
