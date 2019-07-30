@@ -18,6 +18,11 @@
     <section v-if="todaysChallenge.done">
       BRA JOBBAT!
     </section>
+    <section>
+      <section v-for="(challenge, index) in challenges">
+        {{index+1}}
+      </section>
+    </section>
   </main>
 
   <!-- development version, includes helpful console warnings -->
@@ -29,7 +34,24 @@
       challenges: [
         { description: "Exempelchallenge 1", date: new Date(2019, 6, 29), done: false },
         { description: "Exempelchallenge 2", date: new Date(2019, 6, 30), done: false },
-        { description: "Exempelchallenge 3", date: new Date(2019, 6, 31), done: false }
+        { description: "Exempelchallenge 3", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 4", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 5", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 6", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 7", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 8", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 9", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 10", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 11", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 12", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 13", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 14", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 15", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 16", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 17", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 18", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 19", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 20", date: new Date(2019, 6, 31), done: false }
       ]
     },
     mounted: function() {
