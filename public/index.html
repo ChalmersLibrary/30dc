@@ -9,7 +9,15 @@
 
 <body>
   <main id="app">
-    {{todaysChallenge}}    
+    <section v-if="!todaysChallenge.done">
+        {{todaysChallenge.description}}
+        <button type="button" @click="imDone">
+          Jag har gjort dagens challenge!
+        </button>
+    </section>
+    <section v-if="todaysChallenge.done">
+      BRA JOBBAT!
+    </section>
   </main>
 
   <!-- development version, includes helpful console warnings -->
@@ -19,9 +27,9 @@
     el: '#app',
     data: {
       challenges: [
-        { description: "Exempelchallenge 1", date: new Date(2019, 6, 29) },
-        { description: "Exempelchallenge 2", date: new Date(2019, 6, 30) },
-        { description: "Exempelchallenge 3", date: new Date(2019, 6, 31) }
+        { description: "Exempelchallenge 1", date: new Date(2019, 6, 29), done: false },
+        { description: "Exempelchallenge 2", date: new Date(2019, 6, 30), done: false },
+        { description: "Exempelchallenge 3", date: new Date(2019, 6, 31), done: false }
       ]
     },
     computed: {
@@ -33,10 +41,15 @@
           if (todaysDate.getFullYear() === date.getFullYear() &&
               todaysDate.getMonth() === date.getMonth() &&
               todaysDate.getDate() === date.getDate()) {
-            result = this.challenges[i].description;
+            result = this.challenges[i];
           }
         }
         return result;
+      }
+    },
+    methods: {
+      imDone: function () {
+        this.todaysChallenge.done=true;
       }
     }
   })
