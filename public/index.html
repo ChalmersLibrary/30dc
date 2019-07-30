@@ -9,13 +9,13 @@
 
 <body>
   <main id="app">
-    <section v-if="!todaysChallenge.done">
-        {{todaysChallenge.description}}
-        <button type="button" @click="imDone">
-          Jag har gjort dagens challenge!
-        </button>
+    <section v-show="!todaysChallenge.done">
+      {{todaysChallenge.description}}
+      <button type="button" @click="imDone">
+        Jag har gjort dagens challenge!
+      </button>
     </section>
-    <section v-if="todaysChallenge.done">
+    <section v-show="todaysChallenge.done">
       BRA JOBBAT!
     </section>
   </main>
