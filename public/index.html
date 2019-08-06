@@ -101,7 +101,7 @@
         this.saveUserData();
       },
       loadUserData: function() {
-        let userData = JSON.parse(localStorage.getItem("30daychallenge"));
+        let userData = JSON.parse(localStorage.getItem("30daychallenge1"));
 
         if (userData) {
           for (var i=0; i<userData.doneChallenges.length; i++) {
@@ -122,7 +122,7 @@
           }
         }
 
-        localStorage.setItem("30daychallenge", JSON.stringify(userData));
+        localStorage.setItem("30daychallenge1", JSON.stringify(userData));
       }
     }
   })

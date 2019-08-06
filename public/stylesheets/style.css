@@ -75,6 +75,7 @@ button:active {
 
 .done {
   background-color: #f2c230;
+  border: solid 0.4rem #f2c230;
 }
 
 .current {
