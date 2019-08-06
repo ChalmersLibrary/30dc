@@ -10,17 +10,22 @@
 
 <body>
   <main id="app">
-    <section v-show="!todaysChallenge.done">
-      <h1>
-        Dagens challenge
-      </h1>
-      <p class="challenge-text" v-html="todaysChallenge.description"></p>
-      <button type="button" @click="imDone">
-        Jag har gjort dagens challenge!
-      </button>
+    <section v-if="!todaysChallenge">
+      <p>Det finns ingen aktuell utmaning.</p>
     </section>
-    <section v-show="todaysChallenge.done">
-      BRA JOBBAT!
+    <section v-if="todaysChallenge">
+      <section v-show="!todaysChallenge.done">
+          <h1>
+            Dagens challenge
+          </h1>
+          <p class="challenge-text" v-html="todaysChallenge.description"></p>
+          <button type="button" @click="imDone">
+            Jag har gjort dagens challenge!
+          </button>
+        </section>
+        <section v-show="todaysChallenge.done">
+          BRA JOBBAT!
+        </section>
     </section>
     <section>
       <section class="history-element__outer-container"
@@ -73,7 +78,9 @@
           let date = this.challenges[i].date;
           if (todaysDate.getFullYear() === date.getFullYear() &&
               todaysDate.getMonth() === date.getMonth() &&
-              todaysDate.getDate() === date.getDate()) {
+              todaysDate.getDate() === date.getDate() &&
+              todaysDate.getHours() >= 7 &&
+              todaysDate.getHours() < 18) {
             result = i;
           }
         }
