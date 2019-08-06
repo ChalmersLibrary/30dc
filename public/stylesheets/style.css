@@ -19,7 +19,12 @@ body {
 h1 {
   font-family: 'Anton', sans-serif;
   color: #f2c230;
-  margin: 0.2em;
+  font-size: 1.5rem;
+  margin: 0.2rem;
+}
+
+a {
+  color: #dedbcc;
 }
 
 button {
