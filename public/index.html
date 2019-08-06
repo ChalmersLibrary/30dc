@@ -14,9 +14,7 @@
       <h1>
         Dagens challenge
       </h1>
-      <p class="challenge-text">
-        {{todaysChallenge.description}}
-      </p>
+      <p class="challenge-text" v-html="todaysChallenge.description"></p>
       <button type="button" @click="imDone">
         Jag har gjort dagens challenge!
       </button>
@@ -40,13 +38,13 @@
     el: '#app',
     data: {
       challenges: [
-        { description: "Exempelchallenge 1", date: new Date(2019, 6, 29), done: false },
-        { description: "Ta 5-15 minuter och fundera över vad du har gjort idag.", date: new Date(2019, 6, 30), done: false },
-        { description: "Gå på en promenad med en eller flera kollegor.", date: new Date(2019, 6, 31), done: false },
-        { description: "Fråga en kollega som du inte arbetar så mycket med om vad hen gör.", date: new Date(2019, 7, 1), done: false },
-        { description: "Dela med dig av ditt bästa generella arbetstips och varför det funkar för dig.", date: new Date(2019, 7, 2), done: false },
-        { description: "Testa ett av dina kollegors bästa generella arbetstips.", date: new Date(2019, 7, 3), done: false },
-        { description: "Dela med dig av ditt favorit-arbetsverktyg och varför det är så bra.", date: new Date(2019, 7, 4), done: false },
+        { description: "Testa att använda quick-draw genom att <a href=\"https://quickdraw.withgoogle.com/\">Klicka här.</a>", date: new Date(2019, 7, 6), done: false },
+        { description: "Dela med dig av ditt bästa generella arbetstips och varför det funkar för dig.", date: new Date(2019, 7, 7), done: false },
+        { description: "Testa ett av dina kollegors bästa generella arbetstips.", date: new Date(2019, 7, 8), done: false },
+        { description: "Ställ dig upp och gör några stretch-övningar någon gång under dagen.", date: new Date(2019, 7, 9), done: false },
+        { description: "Testa att stå upp vid din arbetsplats någon gång under dagen.", date: new Date(2019, 7, 12), done: false },
+        { description: "Tänk ut något som du har gjort som var bra idag.", date: new Date(2019, 7, 13), done: false },
+        { description: "Dela med dig av ditt favorit-arbetsverktyg och varför det är så bra.", date: new Date(2019, 7, 14), done: false },
         { description: "Exempelchallenge 8", date: new Date(2019, 7, 5), done: false },
         { description: "Exempelchallenge 9", date: new Date(2019, 7, 6), done: false },
         { description: "Exempelchallenge 10", date: new Date(2019, 7, 7), done: false },
