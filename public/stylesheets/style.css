@@ -51,20 +51,27 @@ button:active {
   margin-top: 0;
 }
 
-.history-element {
+.history-element__outer-container {
   display: inline-block;
   width: 20%;
+  background-color: #075767;
+}
+
+.history-element__inner-container {
   background-color: #fcf9ec;
   color: #075767;
   box-sizing: border-box;
   padding: 1.3rem;
   text-align: center;
-  border: #075767;
-  border-style: solid;
-  border-width: 0.01rem;
+  border: solid 0.4rem #fcf9ec;
+  margin-bottom: 0.2rem;
+  margin-right: 0.2rem;
 }
 
 .done {
   background-color: #f2c230;
 }
 
+.current {
+  border: solid 0.4rem #f2c230;
+}

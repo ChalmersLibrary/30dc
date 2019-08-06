@@ -1,7 +1,7 @@
  TODO
 --------------------------------------------------------------------------------
-- Testa att lägga till en rubrik "Dagens challenge"
-- Markera dagens eller senaste utmaningen i kalendern med en ram kanske.
++ Testa att lägga till en rubrik "Dagens challenge"
++ Markera dagens eller senaste utmaningen i kalendern med en ram kanske.
 - Ändra tiden då vi släpper nya utmaningen till början på arbetsdag?
 - Inte släppa utmaning på helger och röda dagar osv.
 - Funka bra på vanlig dator.
