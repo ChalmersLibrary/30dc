@@ -22,10 +22,12 @@
       BRA JOBBAT!
     </section>
     <section>
-      <section class="history-element"
-          :class="{done:challenge.done}"
+      <section class="history-element__outer-container"
           v-for="(challenge, index) in challenges">
-        {{index+1}}
+        <section class="history-element__inner-container"
+            :class="{done:challenge.done, current:index === todaysChallengeIndex}">
+          {{index+1}}
+        </section>
       </section>
     </section>
   </main>
@@ -63,16 +65,24 @@
       this.loadUserData();
     },
     computed: {
-      todaysChallenge: function() {
-        let result;
+      todaysChallengeIndex: function() {
+        let result = -1;
         let todaysDate = new Date();
         for (var i=0; i<this.challenges.length; i++) {
           let date = this.challenges[i].date;
           if (todaysDate.getFullYear() === date.getFullYear() &&
               todaysDate.getMonth() === date.getMonth() &&
               todaysDate.getDate() === date.getDate()) {
-            result = this.challenges[i];
+            result = i;
           }
+        }
+        return result;
+      },
+      todaysChallenge: function() {
+        let result;
+        let index = this.todaysChallengeIndex;
+        if (index >= 0) {
+          result = this.challenges[index];
         }
         return result;
       }
