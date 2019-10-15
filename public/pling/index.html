@@ -1,0 +1,85 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pling</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
+  <body>
+    <main id="app" v-cloak>
+      <transition name="fade" mode="out-in">
+        <section class="screen" v-if="challengeIndex === 0" key=1>
+          Du vaknar upp med ett missat samtal på telefonen.
+          <img src="images/tele.png">
+          Vem är det egentligen som ringt?
+          <section class="answer-container">
+            <input 
+              type=text 
+              placeholder="Mata in vem det är här" 
+              v-model="answer">
+            <button type=button @click="submitAnswer">Svara</button>
+          </section>
+        </section>
+        <section class="screen" v-if="challengeIndex === 1" key=2>
+          Plötsligt plingar det till i telefonen.
+          <img src="images/sms.png">
+          Bäst att göra som de säger...
+          <section class="answer-container">
+            <input 
+              type=text 
+              placeholder="Mata in avståndet här" 
+              v-model="answer">
+            <button type=button @click="submitAnswer">Svara</button>
+          </section>
+        </section>
+        <section class="screen" v-if="challengeIndex === 2" key=3>
+          Bra! Tyvärr måste jag be dig om en sak till.
+          Kan du få fram koden för 3283 ur <a 
+          href="https://observablehq.com/@goleegrees/kod-som-skapar-hemlig-kod"
+          target="_blank">kodgeneratorn</a>?
+          <section class="answer-container">
+            <input 
+              type=text 
+              placeholder="Mata in koden här" 
+              v-model="answer">
+            <button type=button @click="submitAnswer">Svara</button>
+          </section>
+        </section>
+        <section class="screen" v-if="challengeIndex === 3" key=4>
+          <h3>Du klarade allt.</h3>
+          <h2>Bra jobbat!</h2>
+        </section>
+      </transition>
+    </main>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          challengeIndex: 0,
+          answer: ""
+        },
+        methods: {
+          submitAnswer: function() {
+            let answerAsInt = parseInt(this.answer);
+            if ((this.challengeIndex === 0 && 
+                this.answer.toLowerCase() === "regeringskansliet")) {
+              this.challengeIndex += 1;
+            }
+            if ((this.challengeIndex === 1 &&
+                answerAsInt && Math.floor(answerAsInt/10)*10 === 1160)) {
+              this.challengeIndex += 1;
+            }
+            if ((this.challengeIndex === 2 &&
+                this.answer.toLowerCase() === "ash")) {
+              this.challengeIndex += 1;
+            }
+            this.answer = "";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
