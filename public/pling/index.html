@@ -17,7 +17,8 @@
             <input 
               type=text 
               placeholder="Mata in vem det är här" 
-              v-model="answer">
+              v-model="answer"
+              @keyup="keyUp">
             <button type=button @click="submitAnswer">Svara</button>
           </section>
         </section>
@@ -29,7 +30,8 @@
             <input 
               type=text 
               placeholder="Mata in avståndet här" 
-              v-model="answer">
+              v-model="answer"
+              @keyup="keyUp">
             <button type=button @click="submitAnswer">Svara</button>
           </section>
         </section>
@@ -42,7 +44,8 @@
             <input 
               type=text 
               placeholder="Mata in koden här" 
-              v-model="answer">
+              v-model="answer"
+              @keyup="keyUp">
             <button type=button @click="submitAnswer">Svara</button>
           </section>
         </section>
@@ -77,6 +80,12 @@
               this.challengeIndex += 1;
             }
             this.answer = "";
+          },
+          keyUp: function(event) {
+            if (event.keyCode === 13) {
+              event.preventDefault();
+              this.submitAnswer();
+            }
           }
         }
       });
