@@ -10,6 +10,7 @@
 - Kunna klicka på gammal utmaning i kalendern.
 - Lägga till bild under bra jobbat.
 - Scroll som inte ska vara där.
+- Lägg till delningsuppmuntran "Här kan du dela ditt resultat".
 
 
 - Testa att lägga till indikator om antal som gjort en challenge i kalendern.
