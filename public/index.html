@@ -41,6 +41,8 @@
   <!-- development version, includes helpful console warnings -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+  const saveKey = "30daychallenge1-test";
+
   var app = new Vue({
     el: '#app',
     data: {
@@ -101,7 +103,7 @@
         this.saveUserData();
       },
       loadUserData: function() {
-        let userData = JSON.parse(localStorage.getItem("30daychallenge1"));
+        let userData = JSON.parse(localStorage.getItem(saveKey));
 
         if (userData) {
           for (var i=0; i<userData.doneChallenges.length; i++) {
@@ -122,7 +124,7 @@
           }
         }
 
-        localStorage.setItem("30daychallenge1", JSON.stringify(userData));
+        localStorage.setItem(saveKey, JSON.stringify(userData));
       }
     }
   })
