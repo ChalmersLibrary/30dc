@@ -12,6 +12,7 @@
 - Scroll som inte ska vara där.
 - Lägg till delningsuppmuntran "Här kan du dela ditt resultat".
 - Lägg till flerspråkighet.
+- Bättre info mellan 17 och 08.
 
 
 - Testa att lägga till indikator om antal som gjort en challenge i kalendern.
