@@ -47,27 +47,35 @@
     el: '#app',
     data: {
       challenges: [
-        { description: "Testa att utföra metoden <a href=\"https://sv.wikipedia.org/wiki/5_x_Varf%C3%B6r%3F\" target=\"_blank\">5 x Varför?</a>", date: new Date(2019, 9, 16), done: false },
-        { description: "Gå ut och detaljstudera något väldigt litet. Titta på saken riktigt nära och rita av den.", date: new Date(2019, 9, 17), done: false },
-        { description: "Dela med dig av ditt bästa tips för att underlätta arbetsdagen och varför det funkar för dig.", date: new Date(2019, 9, 18), done: false },
-        { description: "Skriv fritt i 15 minuter om vad du har gjort idag, vad du eventuellt har lärt dig och hur det i så fall kan hjälpa dig i fortsättningen.", date: new Date(2019, 9, 19), done: false },
-        { description: "Vik pappersflygplan.", date: new Date(2019, 9, 20), done: false },
-        { description: "Fråga en kollega som du inte arbetar så mycket med om vad hen gör just nu på jobbet och vad hen tycker är roligast att göra utanför jobbet.", date: new Date(2019, 9, 21), done: false },
-        { description: "Gå på en promenad med en eller flera kollegor.", date: new Date(2019, 9, 22), done: false },
-        { description: "Byt kontor med någon i en timme.", date: new Date(2019, 9, 23), done: false },
-        { description: "Gå på en promenad med en eller flera kollegor.", date: new Date(2019, 9, 24), done: false },
-        { description: "Exempelchallenge 10", date: new Date(2019, 7, 17), done: false },
-        { description: "Exempelchallenge 11", date: new Date(2019, 7, 18), done: false },
-        { description: "Exempelchallenge 12", date: new Date(2019, 7, 19), done: false },
-        { description: "Exempelchallenge 13", date: new Date(2019, 7, 20), done: false },
-        { description: "Exempelchallenge 14", date: new Date(2019, 7, 21), done: false },
-        { description: "Exempelchallenge 15", date: new Date(2019, 7, 22), done: false },
-        { description: "Exempelchallenge 16", date: new Date(2019, 7, 23), done: false },
-        { description: "Exempelchallenge 17", date: new Date(2019, 7, 24), done: false },
-        { description: "Exempelchallenge 18", date: new Date(2019, 7, 25), done: false },
-        { description: "Exempelchallenge 19", date: new Date(2019, 7, 26), done: false },
-        { description: "Exempelchallenge 20", date: new Date(2019, 7, 30), done: false }
+        { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 9, 30), done: false },
+        { description: "Find a bunch of people and try to solve something by using the method <a href\"/reverse-brainstorming\">Reverse Brainstorming.</a>", date: new Date(2019, 9, 31), done: false },
+        { description: "Update your info at <a href=\"https://admin.chalmers.se/en/_layouts/chalmersPublicWeb/profilePage.aspx\">chalmers.se</a> so that the info is correct.", date: new Date(2019, 10, 1), done: false },
+        { description: "Try mindfulness. If you want, you can try one of <a href=\"https://www.mindful.org/audio-resources-for-mindfulness-meditation/\">these</a> audio guided meditations.", date: new Date(2019, 10, 5), done: false },
+        { description: "Try some yoga exercises, together or alone. If you want, you can try some of <a href=\"https://www.verywellfit.com/essential-yoga-poses-for-beginners-3566747\">these</a> exercises.", date: new Date(2019, 10, 6), done: false }
       ]
+
+      /*challenges: [
+        { description: "Take a walk with at least one colleague.", date: new Date(2019, 10, 25), done: false },
+        { description: "Try some yoga exercises, together or alone. If you want, you can try some of <a href=\"https://www.verywellfit.com/essential-yoga-poses-for-beginners-3566747\">these</a> exercises.", date: new Date(2019, 10, 26), done: false },
+        { description: "Share your best tip for making your workday easier and why this works for you.", date: new Date(2019, 10, 27), done: false },
+        { description: "Try one of your colleagues tip for making the workday easier.", date: new Date(2019, 10, 28), done: false },
+        { description: "Make an attempt to solve <a href=\"\">this</a> puzzle.", date: new Date(2019, 10, 29), done: false },
+        { description: "Go outside and find something small to study in detail. Look at the thing very closely and draw it.", date: new Date(2019, 11, 2), done: false },
+        { description: "Ask a colleague you don't work with that much about what she or he is working with right now and also what she or he likes to do outside of work.", date: new Date(2019, 11, 3), done: false },
+        { description: "Play <a href=\"\">this</a> game.", date: new Date(2019, 11, 4), done: false },
+        { description: "Update your info at <a href=\"https://admin.chalmers.se/en/_layouts/chalmersPublicWeb/profilePage.aspx\">chalmers.se</a> so that the info is correct.", date: new Date(2019, 11, 5), done: false },
+        { description: "Fold paper airplanes.", date: new Date(2019, 11, 6), done: false },
+        { description: "Do something kind for another colleague, perhaps in secret.", date: new Date(2019, 11, 9), done: false },
+        { description: "Find a bunch of people and try to solve something by using the method <a href\"/reverse-brainstorming\">Reverse Brainstorming.</a>", date: new Date(2019, 11, 10), done: false },
+        { description: "Show someone something that you have done and ask what she or he thinks of it.", date: new Date(2019, 11, 11), done: false },
+        { description: "Write freely for 15 minutes about what you have done today, what you possibly have learned and how this, in that case, can be of help for you in the future.", date: new Date(2019, 11, 12), done: false },
+        { description: "Do something you don't normally do.", date: new Date(2019, 11, 13), done: false },
+        { description: "Try mindfulness. If you want, you can try one of <a href=\"https://www.mindful.org/audio-resources-for-mindfulness-meditation/\">these</a> audio guided meditations.", date: new Date(2019, 11, 16), done: false },
+        { description: "Identify the user of something that you are currently working with. Take the role of the user for 15 minutes.", date: new Date(2019, 11, 17), done: false },
+        { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 11, 18), done: false },
+        { description: "Switch office/workplace with a colleague for one hour.", date: new Date(2019, 11, 19), done: false },
+        { description: "Take a morning \"fika\" in the lunch room.", date: new Date(2019, 11, 20), done: false }
+      ]*/
     },
     mounted: function() {
       this.loadUserData();
