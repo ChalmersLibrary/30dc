@@ -1,0 +1,149 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pling</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
+  <body>
+    <main id="app" v-cloak>
+      <transition name="fade" mode="out-in">
+        <section class="screen" v-if="challengeIndex === 0" key=1>
+          When you return from your morning "fika" you notice a missed phone call.
+          <img src="images/tele.png">
+          <section>
+            <img src="images/ano.png">
+          </section>
+          Who is the call from?
+          <section class="answer-container">
+            <input 
+              type=text 
+              placeholder="Mata in vem det är här" 
+              v-model="answer"
+              @keyup="keyUp">
+            <button type=button @click="submitAnswer">Svara</button>
+          </section>
+        </section>
+        <section class="screen" v-if="challengeIndex === 1" key=2>
+          <!-- 
+            2. 
+               Oh my god! Poseidon has sprung to life and is wrecking havoc in the city.
+               -
+               Right now it looks like he is taking a break at Gamla Ullevi.
+               -
+               He ordered a burger and large fries and is enjoying them at the north east corner of Gamla Ullevi.
+               -
+               He went straight down here from Götaplatsen in only 1 minute and 40 seconds.
+               - 
+               Through the houses and everything!
+               -
+               We need you to help us calculate his speed (m/s).
+               -
+               We are counting on you.
+               -
+               SVAR: 23m/s
+            3. 
+               Excellent! I knew we could count on you.
+               -
+               Damn. He is getting angrier by the minute.
+               -
+               He screams that something has been taken away from Gothenburg.
+               -
+               Now it looks like he has soon finished his meal, after that he will probably be on the move again.
+               -
+               We need to figure out where he is going.
+               - 
+               It looks like he will continue in the same direction.
+               -
+               Could he be moving towards the thing that he is missing? What could it be?
+               -
+               SVAR: Gasklockan
+            4.
+               Yes! You are right. It must be Gasklockan.
+               -
+               One of our police officers is trying to communicate with Poseidon.
+               -
+               She is trying to inform him about what has happened to Gasklockan.
+               -
+               Poseidon looks sad but understanding.
+               -
+               It looks like he is returning to his place at Götaplatsen.
+               -
+               We did it! We couldn't have done it without you.
+               -
+               All is well.
+                
+          -->
+          Plötsligt plingar det till i telefonen.
+          <img src="images/sms.png">
+          Bäst att göra som de säger...
+          <section class="answer-container">
+            <input 
+              type=text 
+              placeholder="Mata in avståndet här" 
+              v-model="answer"
+              @keyup="keyUp">
+            <button type=button @click="submitAnswer">Svara</button>
+          </section>
+        </section>
+        <section class="screen" v-if="challengeIndex === 2" key=3>
+          Bra! Tyvärr måste jag be dig om en sak till.
+          Kan du få fram koden för 3283 ur <a 
+          href="https://observablehq.com/@goleegrees/kod-som-skapar-hemlig-kod"
+          target="_blank">kodgeneratorn</a>?
+          <section class="answer-container">
+            <input 
+              type=text 
+              placeholder="Mata in koden här" 
+              v-model="answer"
+              @keyup="keyUp">
+            <button type=button @click="submitAnswer">Svara</button>
+          </section>
+        </section>
+        <section class="screen" v-if="challengeIndex === 3" key=4>
+          <h3>Du klarade allt.</h3>
+          <h2>Bra jobbat!</h2>
+        </section>
+      </transition>
+    </main>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          challengeIndex: 0,
+          answer: ""
+        },
+        methods: {
+          submitAnswer: function() {
+            let answerAsInt = parseInt(this.answer);
+            if ((this.challengeIndex === 0 &&
+                (this.answer.toLowerCase() === "säpo") || 
+                 this.answer.toLowerCase() === "säkerhetspolisen" ||
+                 this.answer.toLowerCase() === "sapo" ||
+                 this.answer.toLowerCase() === "sakerhetspolisen")) {
+              this.challengeIndex += 1;
+            }
+            if ((this.challengeIndex === 1 &&
+                answerAsInt && Math.floor(answerAsInt/10)*10 === 1160)) {
+              this.challengeIndex += 1;
+            }
+            if ((this.challengeIndex === 2 &&
+                this.answer.toLowerCase() === "ash")) {
+              this.challengeIndex += 1;
+            }
+            this.answer = "";
+          },
+          keyUp: function(event) {
+            if (event.keyCode === 13) {
+              event.preventDefault();
+              this.submitAnswer();
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
