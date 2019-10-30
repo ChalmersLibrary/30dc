@@ -9,13 +9,13 @@
 - Lägg till infoknapp för att komma till start/infosidan.
 - Kunna klicka på gammal utmaning i kalendern.
 - Lägga till bild under bra jobbat.
-- Scroll som inte ska vara där.
 - Lägg till delningsuppmuntran "Här kan du dela ditt resultat".
-- Lägg till flerspråkighet.
 - Bättre info mellan 17 och 08.
-
+- Kunna lägga till på hemskärm.
+- Notifikationer
+- Scroll som inte ska vara där.
+- !! VIKTIGT !! Ändra sparnyckel.
 
 - Testa att lägga till indikator om antal som gjort en challenge i kalendern.
 
 - Funka bättre för deltid och ledighet.
-- Notifikationer
