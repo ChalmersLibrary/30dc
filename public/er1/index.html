@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pling</title>
+    <title>Trubbel!</title>
     <link rel="stylesheet" href="stylesheets/style.css">
   </head>
   <body>
@@ -11,9 +11,21 @@
       <transition name="fade" mode="out-in">
         <section class="screen" v-if="challengeIndex === 0" key=1>
           When you return from your morning "fika" you notice a missed phone call.
-          <img src="images/tele.png">
-          <section>
-            <img src="images/ano.png">
+          <section class="missed-call">
+            <section class="missed-call__header">
+              Missed Call
+            </section>
+            <section class="missed-call__main-container">
+              <img src="images/ano.png" class="profile-picture">
+              <section class="missed-call__right-container">
+                <section class="missed-call__number">
+                  010-568 70 00
+                </section>
+                <section class="missed-call__description">
+                  okänd
+                </section>
+              </section>
+            </section>
           </section>
           Who is the call from?
           <section class="answer-container">
@@ -25,66 +37,32 @@
             <button type=button @click="submitAnswer">Svara</button>
           </section>
         </section>
-        <section class="screen" v-if="challengeIndex === 1" key=2>
-          <!-- 
-            2. 
-               Oh my god! Poseidon has sprung to life and is wrecking havoc in the city.
-               -
-               Right now it looks like he is taking a break at Gamla Ullevi.
-               -
-               He ordered a burger and large fries and is enjoying them at the north east corner of Gamla Ullevi.
-               -
-               He went straight down here from Götaplatsen in only 1 minute and 40 seconds.
-               - 
-               Through the houses and everything!
-               -
-               We need you to help us calculate his speed (m/s).
-               -
-               We are counting on you.
-               -
-               SVAR: 23m/s
-            3. 
-               Excellent! I knew we could count on you.
-               -
-               Damn. He is getting angrier by the minute.
-               -
-               He screams that something has been taken away from Gothenburg.
-               -
-               Now it looks like he has soon finished his meal, after that he will probably be on the move again.
-               -
-               We need to figure out where he is going.
-               - 
-               It looks like he will continue in the same direction.
-               -
-               Could he be moving towards the thing that he is missing? What could it be?
-               -
-               SVAR: Gasklockan
-            4.
-               Yes! You are right. It must be Gasklockan.
-               -
-               One of our police officers is trying to communicate with Poseidon.
-               -
-               She is trying to inform him about what has happened to Gasklockan.
-               -
-               Poseidon looks sad but understanding.
-               -
-               It looks like he is returning to his place at Götaplatsen.
-               -
-               We did it! We couldn't have done it without you.
-               -
-               All is well.
-                
-          -->
-          Plötsligt plingar det till i telefonen.
-          <img src="images/sms.png">
-          Bäst att göra som de säger...
-          <section class="answer-container">
-            <input 
-              type=text 
-              placeholder="Mata in avståndet här" 
-              v-model="answer"
-              @keyup="keyUp">
-            <button type=button @click="submitAnswer">Svara</button>
+        <section class="screen chat" v-if="challengeIndex === 1" key=2>
+          <section class="chat__header">
+            SÄPO (Göteborgsdivisionen)
+          </section>
+          <section class="chat__message-log" @scroll="chatScroll" ref="chat">
+            <section class="chat-message"
+              v-for="message in chatLog"
+              :class="{ 'chat-message--from-me':message.me }">
+              <section class="chat-message__inner-container"
+                :class="{ 'chat-message__inner-container--from-me':message.me }">
+                {{ message.msg }}
+              </section>
+            </section>
+            <section class="chat-message__inner-container chat-message__pending-write" 
+              v-if="participantIsWriting">
+              <span class="pending-write__dot pending-write__dot--first">.</span>
+              <span class="pending-write__dot pending-write__dot--second">.</span>
+              <span class="pending-write__dot pending-write__dot--third">.</span>
+            </section>
+          </section>
+          <section class="chat__message-box">
+            <input class="chat__message-input" type=text v-model="myChatMessage"
+              @keyup="sendChatMessageKeyUp">
+            <button class="chat__send-button" type=button 
+              @click="submitMyChatMessage"
+              >></button>
           </section>
         </section>
         <section class="screen" v-if="challengeIndex === 2" key=3>
@@ -114,7 +92,42 @@
         el: "#app",
         data: {
           challengeIndex: 0,
-          answer: ""
+          answer: "",
+          chatMessages: [
+            { msg: "Oh my god! Poseidon has sprung to life and is wrecking havoc in the city." },
+            { msg: "Right now it looks like he is taking a break at Gamla Ullevi." },
+            { msg: "He ordered a burger and large fries and is enjoying them at the north east corner of the stadium." },
+            { msg: "He went straight down here from Götaplatsen in only 1 minute and 40 seconds." },
+            { msg: "Through the houses and everything!" },
+            { msg: "We need you to help us calculate his speed (m/s)." },
+            { 
+              msg: "We are counting on you.",
+              answer: "23"
+            },
+            { msg: "Excellent! I knew we could count on you." },
+            { msg: "Damn. He is getting angrier by the minute." },
+            { msg: "He screams that something has been taken away from Gothenburg." },
+            { msg: "Now it looks like he has soon finished his meal, after that he will probably be on the move again." },
+            { msg: "We need to figure out where he is going." },
+            { msg: "It looks like he will continue in the same direction." },
+            { 
+              msg: "Could he be moving towards the thing that he is missing? What could it be?",
+              answer: "gasklockan"
+            },
+            { msg: "Yes! You are right. It must be Gasklockan." },
+            { msg: "One of our police officers is trying to communicate with Poseidon." },
+            { msg: "She is trying to inform him about what has happened to Gasklockan." },
+            { msg: "Poseidon looks sad but understanding." },
+            { msg: "It looks like he is returning to his place at Götaplatsen." },
+            { msg: "We did it. Great job!" },
+            { msg: "All is well."},
+            { msg: "For now..." }
+          ],
+          chatLog: [],
+          participantIsWriting: false,
+          autoScroll: true,
+          myChatMessage: "",
+          waitingForAnswer: null
         },
         methods: {
           submitAnswer: function() {
@@ -126,21 +139,69 @@
                  this.answer.toLowerCase() === "sakerhetspolisen")) {
               this.challengeIndex += 1;
             }
-            if ((this.challengeIndex === 1 &&
-                answerAsInt && Math.floor(answerAsInt/10)*10 === 1160)) {
-              this.challengeIndex += 1;
-            }
-            if ((this.challengeIndex === 2 &&
-                this.answer.toLowerCase() === "ash")) {
-              this.challengeIndex += 1;
-            }
             this.answer = "";
+
+            if (this.challengeIndex === 1) {
+              this.sendNextChatMessage();
+            }
           },
           keyUp: function(event) {
             if (event.keyCode === 13) {
               event.preventDefault();
               this.submitAnswer();
             }
+          },
+          sendNextChatMessage: function() {
+            if (this.chatMessages.length > 0) {
+              let message = this.chatMessages[0];
+              this.writeParticipantMessage(message);
+            }
+          },
+          writeParticipantMessage: function(message) {
+            let timeToWrite = message.msg.length * 50;
+            this.participantIsWriting = true;
+            setTimeout(function() {
+              this.participantIsWriting = false;
+              let newMessage = this.chatMessages.splice(0,1)[0];
+              this.chatLog.push(newMessage);
+              if (this.autoScroll) {
+                this.scrollToBottom();
+              }
+              this.waitingForAnswer = newMessage.answer;
+              if (!this.waitingForAnswer) {
+                this.sendNextChatMessage(newMessage);
+              }
+            }.bind(this), timeToWrite);
+          },
+          sendChatMessageKeyUp: function() {
+            if (event.keyCode === 13) {
+              event.preventDefault();
+              this.submitMyChatMessage();
+            }
+          },
+          submitMyChatMessage: function() {
+            let answer = this.myChatMessage;
+            this.myChatMessage = "";
+            this.chatLog.push({ msg: answer, me: true });
+            if (this.autoScroll) {
+              this.scrollToBottom();
+            }
+
+            if (this.waitingForAnswer) {
+              if (answer.toLowerCase().indexOf(this.waitingForAnswer) > -1) {
+                this.sendNextChatMessage();
+              }
+            }
+          },
+          scrollToBottom: function() {
+            Vue.nextTick(function() {
+              let elem = this.$refs.chat;
+              elem.scrollTop = elem.scrollHeight - elem.clientHeight;
+            }.bind(this));
+          },
+          chatScroll: function(event) {
+            let elem = event.target;
+            this.autoScroll = elem.scrollTop === elem.scrollHeight - elem.clientHeight;
           }
         }
       });

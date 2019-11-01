@@ -14,6 +14,7 @@
 - Kunna lägga till på hemskärm.
 - Notifikationer
 - Scroll som inte ska vara där.
+- Se till att allt ser bra ut på dator också.
 - !! VIKTIGT !! Ändra sparnyckel.
 
 - Testa att lägga till indikator om antal som gjort en challenge i kalendern.
