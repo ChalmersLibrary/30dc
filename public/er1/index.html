@@ -99,7 +99,7 @@
             { msg: "He ordered a burger and large fries and is enjoying them at the north east corner of the stadium." },
             { msg: "He went straight down here from Götaplatsen in only 1 minute and 40 seconds." },
             { msg: "Through the houses and everything!" },
-            { msg: "We need you to help us calculate his speed (m/s)." },
+            { msg: "We need you to help us calculate his speed in meters per second." },
             { 
               msg: "We are counting on you.",
               answer: "23"
@@ -153,8 +153,7 @@
           },
           sendNextChatMessage: function() {
             if (this.chatMessages.length > 0) {
-              let message = this.chatMessages[0];
-              this.writeParticipantMessage(message);
+              this.writeParticipantMessage(this.chatMessages.splice(0,1)[0]);
             }
           },
           writeParticipantMessage: function(message) {
@@ -162,7 +161,7 @@
             this.participantIsWriting = true;
             setTimeout(function() {
               this.participantIsWriting = false;
-              let newMessage = this.chatMessages.splice(0,1)[0];
+              let newMessage = message;
               this.chatLog.push(newMessage);
               if (this.autoScroll) {
                 this.scrollToBottom();
@@ -190,11 +189,11 @@
                 this.sendNextChatMessage();
               } else {
                 let responses = [
-                  "Nah, that can't be correct.",
-                  "Hmm, no that is not it.",
-                  "Do you really think so? I am sceptical."
+                  { msg: "Nah, that can't be correct.", answer: this.waitingForAnswer },
+                  { msg: "Hmm, no that is not it.", answer: this.waitingForAnswer },
+                  { msg: "Do you really think so? I am sceptical.", answer: this.waitingForAnswer }
                 ]
-                this.writeParticipantMessage(responses[responses.length - 1]);
+                this.writeParticipantMessage(responses[Math.floor(Math.random()*responses.length)]);
               }
             }
           },
