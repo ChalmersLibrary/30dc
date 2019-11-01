@@ -183,13 +183,18 @@
             let answer = this.myChatMessage;
             this.myChatMessage = "";
             this.chatLog.push({ msg: answer, me: true });
-            if (this.autoScroll) {
-              this.scrollToBottom();
-            }
+            this.scrollToBottom();
 
             if (this.waitingForAnswer) {
               if (answer.toLowerCase().indexOf(this.waitingForAnswer) > -1) {
                 this.sendNextChatMessage();
+              } else {
+                let responses = [
+                  "Nah, that can't be correct.",
+                  "Hmm, no that is not it.",
+                  "Do you really think so? I am sceptical."
+                ]
+                this.writeParticipantMessage(responses[responses.length - 1]);
               }
             }
           },
