@@ -109,6 +109,8 @@ a, a:visited {
   width: 100%;
   height: 100%;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat__header {
@@ -126,7 +128,7 @@ a, a:visited {
   background-color: #d0d0d0;
   color: black;
   width: 100%;
-  height: 80%;
+  flex: 1;
   box-sizing: border-box;
   overflow: scroll;
 }
