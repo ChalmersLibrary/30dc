@@ -119,7 +119,7 @@ a, a:visited {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 10%;
+  height: 4rem;
   padding: 1rem 0;
   box-sizing: border-box;
 }
@@ -154,7 +154,7 @@ a, a:visited {
 
 .chat__message-box {
   width: 100%;
-  height: 10%;
+  height: 4rem;
   box-sizing: border-box;
   background-color: #7FB539;
   display: flex;
