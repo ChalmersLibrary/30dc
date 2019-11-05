@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trubbel!</title>
-    <link rel="stylesheet" href="stylesheets/style.css?ver=1">
+    <link rel="stylesheet" href="stylesheets/style.css?ver=2">
   </head>
   <body>
     <main id="app" v-cloak>
@@ -59,29 +59,12 @@
           </section>
           <section class="chat__message-box">
             <input class="chat__message-input" type=text v-model="myChatMessage"
+              ref="chat-input"
               @keyup="sendChatMessageKeyUp">
             <button class="chat__send-button" type=button 
               @click="submitMyChatMessage"
               >></button>
           </section>
-        </section>
-        <section class="screen" v-if="challengeIndex === 2" key=3>
-          Bra! Tyvärr måste jag be dig om en sak till.
-          Kan du få fram koden för 3283 ur <a 
-          href="https://observablehq.com/@goleegrees/kod-som-skapar-hemlig-kod"
-          target="_blank">kodgeneratorn</a>?
-          <section class="answer-container">
-            <input 
-              type=text 
-              placeholder="Mata in koden här" 
-              v-model="answer"
-              @keyup="keyUp">
-            <button type=button @click="submitAnswer">Svara</button>
-          </section>
-        </section>
-        <section class="screen" v-if="challengeIndex === 3" key=4>
-          <h3>Du klarade allt.</h3>
-          <h2>Bra jobbat!</h2>
         </section>
       </transition>
     </main>
@@ -176,24 +159,27 @@
             if (event.keyCode === 13) {
               event.preventDefault();
               this.submitMyChatMessage();
+              this.$refs["chat-input"].blur();
             }
           },
           submitMyChatMessage: function() {
-            let answer = this.myChatMessage;
-            this.myChatMessage = "";
-            this.chatLog.push({ msg: answer, me: true });
-            this.scrollToBottom();
+            if (this.myChatMessage) {
+              let answer = this.myChatMessage;
+              this.myChatMessage = "";
+              this.chatLog.push({ msg: answer, me: true });
+              this.scrollToBottom();
 
-            if (this.waitingForAnswer) {
-              if (answer.toLowerCase().indexOf(this.waitingForAnswer) > -1) {
-                this.sendNextChatMessage();
-              } else {
-                let responses = [
-                  { msg: "Nah, that can't be correct.", answer: this.waitingForAnswer },
-                  { msg: "Hmm, no that is not it.", answer: this.waitingForAnswer },
-                  { msg: "Do you really think so? I am sceptical.", answer: this.waitingForAnswer }
-                ]
-                this.writeParticipantMessage(responses[Math.floor(Math.random()*responses.length)]);
+              if (this.waitingForAnswer) {
+                if (answer.toLowerCase().indexOf(this.waitingForAnswer) > -1) {
+                  this.sendNextChatMessage();
+                } else {
+                  let responses = [
+                    { msg: "Nah, that can't be correct.", answer: this.waitingForAnswer },
+                    { msg: "Hmm, no that is not it.", answer: this.waitingForAnswer },
+                    { msg: "Do you really think so? I am sceptical.", answer: this.waitingForAnswer }
+                  ]
+                  this.writeParticipantMessage(responses[Math.floor(Math.random()*responses.length)]);
+                }
               }
             }
           },

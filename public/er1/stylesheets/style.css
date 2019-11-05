@@ -179,15 +179,15 @@ a, a:visited {
 }
 
 .pending-write__dot--first {
-  animation: pending-write-dot1 5s infinite;
+  animation: pending-write-dot1 3s infinite;
 }
 
 .pending-write__dot--second {
-  animation: pending-write-dot2 5s infinite;
+  animation: pending-write-dot2 3s infinite;
 }
 
 .pending-write__dot--third {
-  animation: pending-write-dot3 5s infinite;
+  animation: pending-write-dot3 3s infinite;
 }
 
 @keyframes pending-write-dot1 {
