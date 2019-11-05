@@ -82,6 +82,35 @@ button:active {
   border: solid 0.4rem #f2c230;
 }
 
+.fullscreen-container {
+  margin-bottom: 2rem;
+}
+
+.fullscreen-image {
+  width: 100%;
+}
+
+.fullscreen-close {
+  position: fixed;
+  width: 3rem;
+  height: 3rem;
+  top: 0.5rem; 
+  right: 0.5rem;
+}
+
+.fullscreen-element {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: #1e1e1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (min-width: 1024px) {
   body {
     max-width: 1024px;

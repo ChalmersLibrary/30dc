@@ -3,7 +3,7 @@
 <head>
   <title>Express</title>
   <link href="https://fonts.googleapis.com/css?family=Anton|Merriweather&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/style.css?ver=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
 </head>
@@ -19,6 +19,19 @@
             Dagens challenge
           </h1>
           <p class="challenge-text" v-html="todaysChallenge.description"></p>
+          <section class="fullscreen-container" v-if="todaysChallenge.fullscreen">
+            <section v-show="!todaysChallenge.fullscreen.visible">
+              <a href="#" @click.prevent="todaysChallenge.fullscreen.visible = true">{{ todaysChallenge.fullscreen.linkDescription }}</a>
+            </section>
+            <section class="fullscreen-element" v-if="todaysChallenge.fullscreen.visible">
+              <button 
+                type=button
+                class="fullscreen-close"
+                @click="todaysChallenge.fullscreen.visible = false">X</button>
+              <img class="fullscreen-image" v-if="todaysChallenge.fullscreen.imageSource" 
+                :src="todaysChallenge.fullscreen.imageSource">
+            </section>
+          </section>
           <button type="button" @click="imDone">
             Jag har gjort dagens challenge!
           </button>
@@ -41,17 +54,17 @@
   <!-- development version, includes helpful console warnings -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
-  const saveKey = "30daychallenge1-test1";
+  const saveKey = "30daychallenge1-test2";
 
   var app = new Vue({
     el: '#app',
     data: {
       challenges: [
-        { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 9, 30), done: false },
-        { description: "Find a bunch of people and try to solve something by using the method <a href\"/reverse-brainstorming\">Reverse Brainstorming.</a>", date: new Date(2019, 9, 31), done: false },
-        { description: "Update your info at <a href=\"https://admin.chalmers.se/en/_layouts/chalmersPublicWeb/profilePage.aspx\">chalmers.se</a> so that the info is correct. <img src=\"images/30DC.gif\" style=\"max-width:100%;\">", date: new Date(2019, 10, 1), done: false },
-        { description: "Try mindfulness. If you want, you can try one of <a href=\"https://www.mindful.org/audio-resources-for-mindfulness-meditation/\">these</a> audio guided meditations.", date: new Date(2019, 10, 5), done: false },
-        { description: "Try some yoga exercises, together or alone. If you want, you can try some of <a href=\"https://www.verywellfit.com/essential-yoga-poses-for-beginners-3566747\">these</a> exercises.", date: new Date(2019, 10, 6), done: false }
+        { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 10, 8), done: false },
+        { description: "Find a bunch of people and try to solve something by using the method <a href\"/reverse-brainstorming\">Reverse Brainstorming.</a>", date: new Date(2019, 10, 9), done: false },
+        { description: "Update your info at <a href=\"https://admin.chalmers.se/en/_layouts/chalmersPublicWeb/profilePage.aspx\">chalmers.se</a> so that the info is correct.", fullscreen: { imageSource:"images/30DC.gif", linkDescription:"Click here to see how.", visible:false }, date: new Date(2019, 10, 5), done: false },
+        { description: "Try mindfulness. If you want, you can try one of <a href=\"https://www.mindful.org/audio-resources-for-mindfulness-meditation/\">these</a> audio guided meditations.", date: new Date(2019, 10, 6), done: false },
+        { description: "Try some yoga exercises, together or alone. If you want, you can try some of <a href=\"https://www.verywellfit.com/essential-yoga-poses-for-beginners-3566747\">these</a> exercises.", date: new Date(2019, 10, 7), done: false }
       ]
 
       /*challenges: [
