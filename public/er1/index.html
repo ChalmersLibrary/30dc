@@ -46,8 +46,8 @@
               v-for="message in chatLog"
               :class="{ 'chat-message--from-me':message.me }">
               <section class="chat-message__inner-container"
-                :class="{ 'chat-message__inner-container--from-me':message.me }">
-                {{ message.msg }}
+                :class="{ 'chat-message__inner-container--from-me':message.me }" 
+                v-html="message.msg">
               </section>
             </section>
             <section class="chat-message__inner-container chat-message__pending-write" 
@@ -92,7 +92,7 @@
             { msg: "He screams that something has been taken away from Gothenburg." },
             { msg: "Now it looks like he has soon finished his meal, after that he will probably be on the move again." },
             { msg: "We need to figure out where he is going." },
-            { msg: "It looks like he will continue in the same direction." },
+            { msg: "It looks like he will continue in the same direction but he <strong>strongly<strong> dislikes the Göta Älv." },
             { 
               msg: "Could he be moving towards the thing that he is missing? What could it be?",
               answer: "gasklockan"
@@ -104,7 +104,8 @@
             { msg: "It looks like he is returning to his place at Götaplatsen." },
             { msg: "We did it. Great job!" },
             { msg: "All is well."},
-            { msg: "For now..." }
+            { msg: "For now..." },
+            { msg: "<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Poseidonstatyn_i_G%C3%B6teborg_05.JPG/321px-Poseidonstatyn_i_G%C3%B6teborg_05.JPG\">" }
           ],
           chatLog: [],
           participantIsWriting: false,
