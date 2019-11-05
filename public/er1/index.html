@@ -140,7 +140,7 @@
             }
           },
           writeParticipantMessage: function(message) {
-            let timeToWrite = 800 + message.msg.length * 40;
+            let timeToWrite = 1200 + message.msg.length * 40;
             this.participantIsWriting = true;
             setTimeout(function() {
               this.participantIsWriting = false;

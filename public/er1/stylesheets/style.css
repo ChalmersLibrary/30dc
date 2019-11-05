@@ -56,6 +56,13 @@ button {
   opacity: 0;
 }
 
+.missed-call__number:link,
+.missed-call__number:visited,
+.missed-call__number:hover,
+.missed-call__number:active {
+  color: black;
+}
+
 a, a:visited {
   color: #f0f0f0;
 }
