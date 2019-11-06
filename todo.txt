@@ -8,8 +8,8 @@
 + Fixa avrundning i ER1.
 + Skicka bild direkt.
 + Komma vidare efter ER1.
-- Startsida med GDPR-info och annat.
-- Lägg till infoknapp för att komma till start/infosidan.
++ Startsida med GDPR-info och annat.
++ Lägg till infoknapp för att komma till start/infosidan.
 - Kunna klicka på gammal utmaning i kalendern.
 - Lägga till bild under bra jobbat.
 - Lägg till delningsuppmuntran "Här kan du dela ditt resultat".
@@ -20,6 +20,7 @@
 - Notifikationer
 - Se till att allt ser bra ut på dator också.
 - !! VIKTIGT !! Ändra sparnyckel.
+- Sriv info till start/infosidan
 - Se till att alla utmaningar funkar och ser bra ut
 
 - Testa att lägga till indikator om antal som gjort en challenge i kalendern.
