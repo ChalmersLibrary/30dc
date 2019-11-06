@@ -54,13 +54,21 @@
       </section>
       <section>
         <section class="history-element__outer-container"
-            v-for="(challenge, index) in challenges">
+            v-for="(challenge, index) in challenges" @click="showMissionData(index)" >
           <section class="history-element__inner-container"
               :class="{done:challenge.done, current:index === todaysChallengeIndex}">
             {{index+1}}
           </section>
         </section>
       </section>
+    </section>
+    <section class="screen" v-if="screenIndex === 2">
+        <p>Challenge description: <span v-html="challenges[missionDetailIndex].description"></span></p>
+        <p>Date: {{challenges[missionDetailIndex].date}}</p>
+        <p>Completion: {{challenges[missionDetailIndex].done}}</p>
+        <button  
+        type=button 
+        @click="goToScreen(1)">Back to 30 Day Challenge</button>
     </section>
   </main>
 
@@ -73,6 +81,7 @@
     el: '#app',
     data: {
       screenIndex: 0,
+      missionDetailIndex: 0,
       challenges: [
         { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 10, 8), done: false },
         { description: "Find a bunch of people and try to solve something by using the method <a href\"/reverse-brainstorming\">Reverse Brainstorming.</a>", date: new Date(2019, 10, 9), done: false },
@@ -167,6 +176,10 @@
       },
       goToScreen: function(index) {
         this.screenIndex = index;
+      },
+      showMissionData: function(missionIndex){
+        this.missionDetailIndex = missionIndex;
+        this.goToScreen(2);
       }
     },
     watch: {
