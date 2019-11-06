@@ -120,6 +120,11 @@ button:active {
   position: relative;
 }
 
+.challenge-done-image {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
 @media screen and (min-width: 1024px) {
   body {
     max-width: 1024px;

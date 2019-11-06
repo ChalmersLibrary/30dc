@@ -11,7 +11,7 @@
 + Startsida med GDPR-info och annat.
 + Lägg till infoknapp för att komma till start/infosidan.
 - Kunna klicka på gammal utmaning i kalendern.
-- Lägga till bild under bra jobbat.
++ Lägga till bild under bra jobbat.
 - Lägg till delningsuppmuntran "Här kan du dela ditt resultat".
 - Bättre info mellan 17 och 08.
 - CID-inloggning och gemensam lagring.
