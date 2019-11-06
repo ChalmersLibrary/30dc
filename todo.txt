@@ -20,6 +20,7 @@
 - Notifikationer
 - Se till att allt ser bra ut på dator också.
 - !! VIKTIGT !! Ändra sparnyckel.
+- Se till att alla utmaningar funkar och ser bra ut
 
 - Testa att lägga till indikator om antal som gjort en challenge i kalendern.
 
