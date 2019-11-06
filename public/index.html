@@ -10,42 +10,55 @@
 
 <body>
   <main id="app">
-    <section v-if="!todaysChallenge">
-      <p>Det finns ingen aktuell utmaning.</p>
+    <section class="screen" v-if="screenIndex === 0">
+      <h1>Information om 30 Day Challenge</h1>
+      <h2>Info</h2>
+      <p>Nånting här...</p>
+      <h2>Din data</h2>
+      <p>Bla bla bla...</p>
+      <button type=button @click="goToScreen(1)">Continue to 30 Day Challenge</button>
     </section>
-    <section v-if="todaysChallenge">
-      <section v-show="!todaysChallenge.done">
-          <h1>
-            Dagens challenge
-          </h1>
-          <p class="challenge-text" v-html="todaysChallenge.description"></p>
-          <section class="fullscreen-container" v-if="todaysChallenge.fullscreen">
-            <section v-show="!todaysChallenge.fullscreen.visible">
-              <a href="#" @click.prevent="todaysChallenge.fullscreen.visible = true">{{ todaysChallenge.fullscreen.linkDescription }}</a>
+    <section class="screen" v-if="screenIndex === 1">
+      <button class="top-right-button" 
+        type=button 
+        @click="goToScreen(0)">I</button>
+      <section v-if="!todaysChallenge">
+        <p>Det finns ingen aktuell utmaning.</p>
+      </section>
+      <section v-if="todaysChallenge">
+        <section v-show="!todaysChallenge.done">
+            <h1>
+              Dagens challenge
+            </h1>
+            <p class="challenge-text" v-html="todaysChallenge.description"></p>
+            <section class="fullscreen-container" v-if="todaysChallenge.fullscreen">
+              <section v-show="!todaysChallenge.fullscreen.visible">
+                <a href="#" @click.prevent="todaysChallenge.fullscreen.visible = true">{{ todaysChallenge.fullscreen.linkDescription }}</a>
+              </section>
+              <section class="fullscreen-element" v-if="todaysChallenge.fullscreen.visible">
+                <button 
+                  type=button
+                  class="top-right-button"
+                  @click="todaysChallenge.fullscreen.visible = false">X</button>
+                <img class="fullscreen-image" v-if="todaysChallenge.fullscreen.imageSource" 
+                  :src="todaysChallenge.fullscreen.imageSource">
+              </section>
             </section>
-            <section class="fullscreen-element" v-if="todaysChallenge.fullscreen.visible">
-              <button 
-                type=button
-                class="fullscreen-close"
-                @click="todaysChallenge.fullscreen.visible = false">X</button>
-              <img class="fullscreen-image" v-if="todaysChallenge.fullscreen.imageSource" 
-                :src="todaysChallenge.fullscreen.imageSource">
-            </section>
+            <button type="button" @click="imDone">
+              Jag har gjort dagens challenge!
+            </button>
           </section>
-          <button type="button" @click="imDone">
-            Jag har gjort dagens challenge!
-          </button>
-        </section>
-        <section v-show="todaysChallenge.done">
-          BRA JOBBAT!
-        </section>
-    </section>
-    <section>
-      <section class="history-element__outer-container"
-          v-for="(challenge, index) in challenges">
-        <section class="history-element__inner-container"
-            :class="{done:challenge.done, current:index === todaysChallengeIndex}">
-          {{index+1}}
+          <section v-show="todaysChallenge.done">
+            BRA JOBBAT!
+          </section>
+      </section>
+      <section>
+        <section class="history-element__outer-container"
+            v-for="(challenge, index) in challenges">
+          <section class="history-element__inner-container"
+              :class="{done:challenge.done, current:index === todaysChallengeIndex}">
+            {{index+1}}
+          </section>
         </section>
       </section>
     </section>
@@ -59,6 +72,7 @@
   var app = new Vue({
     el: '#app',
     data: {
+      screenIndex: 0,
       challenges: [
         { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 10, 8), done: false },
         { description: "Find a bunch of people and try to solve something by using the method <a href\"/reverse-brainstorming\">Reverse Brainstorming.</a>", date: new Date(2019, 10, 9), done: false },
@@ -127,6 +141,9 @@
         let userData = JSON.parse(localStorage.getItem(saveKey));
 
         if (userData) {
+          if (typeof userData.screenIndex !== "undefined") {
+            this.screenIndex = userData.screenIndex;
+          }
           for (var i=0; i<userData.doneChallenges.length; i++) {
             let doneChallengeIndex = userData.doneChallenges[i];
             this.challenges[doneChallengeIndex].done = true;
@@ -135,6 +152,7 @@
       },
       saveUserData: function() {
         let userData = {
+          screenIndex: this.screenIndex,
           doneChallenges: []
         };
 
@@ -146,7 +164,13 @@
         }
 
         localStorage.setItem(saveKey, JSON.stringify(userData));
+      },
+      goToScreen: function(index) {
+        this.screenIndex = index;
       }
+    },
+    watch: {
+      screenIndex: function() { this.saveUserData() }
     }
   })
   </script>
