@@ -103,10 +103,11 @@
             { msg: "She is trying to inform him about what has happened to Gasklockan." },
             { msg: "Poseidon looks sad but understanding." },
             { msg: "It looks like he is returning to his place at Götaplatsen." },
+            { noWriteDelay: true, msg: "<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Poseidonstatyn_i_G%C3%B6teborg_05.JPG/321px-Poseidonstatyn_i_G%C3%B6teborg_05.JPG\">" },
             { msg: "We did it. Great job!" },
             { msg: "All is well."},
-            { msg: "For now..." },
-            { msg: "<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Poseidonstatyn_i_G%C3%B6teborg_05.JPG/321px-Poseidonstatyn_i_G%C3%B6teborg_05.JPG\">" }
+            { msg: "We might need your excellent service again. Stay tuned!" },
+            { msg: "<a style=\"color: black\" href=\"https://30dc.azurewebsites.net\">Back to 30 Day Challenge</a>" }
           ],
           chatLog: [],
           participantIsWriting: false,
@@ -116,7 +117,10 @@
         },
         methods: {
           submitAnswer: function() {
-            let answerAsInt = parseInt(this.answer);
+            let answerAsFloat = parseFloat(this.answer);
+            if (answerAsFloat=!NaN){
+              Math.round(answerAsFloat);
+            }
             if ((this.challengeIndex === 0 &&
                 (this.answer.toLowerCase() === "säpo") || 
                  this.answer.toLowerCase() === "säkerhetspolisen" ||
@@ -143,6 +147,9 @@
           },
           writeParticipantMessage: function(message) {
             let timeToWrite = 1200 + message.msg.length * 40;
+            if (message.noWriteDelay) {
+              timeToWrite = 0;
+            }
             this.participantIsWriting = true;
             setTimeout(function() {
               this.participantIsWriting = false;
