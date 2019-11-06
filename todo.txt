@@ -6,8 +6,8 @@
 + Inte släppa utmaning på helger och röda dagar osv.
 + Funka bra på vanlig dator.
 + Fixa avrundning i ER1.
-- Skicka bild direkt.
-- Komma vidare efter ER1.
++ Skicka bild direkt.
++ Komma vidare efter ER1.
 - Startsida med GDPR-info och annat.
 - Lägg till infoknapp för att komma till start/infosidan.
 - Kunna klicka på gammal utmaning i kalendern.
