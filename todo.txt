@@ -5,15 +5,19 @@
 + Ändra tiden då vi släpper nya utmaningen till början på arbetsdag?
 + Inte släppa utmaning på helger och röda dagar osv.
 + Funka bra på vanlig dator.
+- Fixa avrundning i ER1.
+- Skicka bild direkt.
+- Komma vidare efter ER1.
 - Startsida med GDPR-info och annat.
 - Lägg till infoknapp för att komma till start/infosidan.
 - Kunna klicka på gammal utmaning i kalendern.
 - Lägga till bild under bra jobbat.
 - Lägg till delningsuppmuntran "Här kan du dela ditt resultat".
 - Bättre info mellan 17 och 08.
+- CID-inloggning och gemensam lagring.
+- Scroll som inte ska vara där.
 - Kunna lägga till på hemskärm.
 - Notifikationer
-- Scroll som inte ska vara där.
 - Se till att allt ser bra ut på dator också.
 - !! VIKTIGT !! Ändra sparnyckel.
 
