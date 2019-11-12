@@ -64,10 +64,11 @@
         </section>
       </section>
     </section>
-    <section class="screen" v-if="screenIndex === 2">
-        <p>Challenge description: <span v-html="challenges[missionDetailIndex].description"></span></p>
-        <p>Date: {{challenges[missionDetailIndex].date}}</p>
-        <p>Completion: {{challenges[missionDetailIndex].done}}</p>
+    <section class="mission-details" class="screen" v-if="screenIndex === 2">
+        <h1>Challenge number {{missionDetailIndex+1}}</h1>
+        <p><strong><u>Challenge description:</u></strong> <span v-html="challenges[missionDetailIndex].description"></span></p>
+        <p><strong><u>Date:</u></strong> {{challenges[missionDetailIndex].date}}</p>
+        <p><strong><u>Completion:</u></strong> {{challenges[missionDetailIndex].done}}</p>
         <button  
         type=button 
         @click="goToScreen(1)">Back to 30 Day Challenge</button>
@@ -182,7 +183,18 @@
       showMissionData: function(missionIndex){
         this.missionDetailIndex = missionIndex;
         this.goToScreen(2);
-      }
+      //},
+        //showDate: function(date){
+          //return toDateString(date);
+      }//,
+        //showIfMissionDone: function(missionsIndex){
+          //if (challenges[missionIndex].done){
+            //return 0;
+          //}
+          //else {
+            //return 1;
+          //} 
+      //}
     },
     watch: {
       screenIndex: function() { this.saveUserData() }
