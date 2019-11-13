@@ -56,11 +56,13 @@
         </section>
       </section>
     </section>
-    <section class="mission-details" class="screen" v-if="screenIndex === 1">
+    <section class="mission-details screen" v-if="screenIndex === 1">
         <h1>Challenge number {{missionDetailIndex+1}}</h1>
-        <p><strong><u>Challenge description:</u></strong> <span v-html="challenges[missionDetailIndex].description"></span></p>
-        <p><strong><u>Date:</u></strong> {{challenges[missionDetailIndex].date}}</p>
-        <p><strong><u>Completion:</u></strong> {{challenges[missionDetailIndex].done}}</p>
+        <section>
+          <p><strong><u>Challenge description:</u></strong> <span v-html="challenges[missionDetailIndex].description"></span></p>
+          <p><strong><u>Date:</u></strong> {{showDate(challenges[missionDetailIndex].date)}}</p>
+          <p><strong><u>Status:</u></strong> {{getCompletionString(challenges[missionDetailIndex].done)}}</p>
+        </section>
         <button  
         type=button 
         @click="goToScreen(0)">Back to 30 Day Challenge</button>
@@ -205,18 +207,19 @@
       showMissionData: function(missionIndex){
         this.missionDetailIndex = missionIndex;
         this.goToScreen(1);
-      //},
-        //showDate: function(date){
-          //return toDateString(date);
-      }//,
-        //showIfMissionDone: function(missionsIndex){
-          //if (challenges[missionIndex].done){
-            //return 0;
-          //}
-          //else {
-            //return 1;
-          //} 
-      //}
+      },
+      showDate: function(date){
+        return "" + date.getFullYear() + "-" +
+          (date.getMonth()+1).toString().padStart(2, "0") + "-" +
+          date.getDate().toString().padStart(2, "0");
+      },
+      getCompletionString: function(done) {
+        if (done) {
+          return "You completed this challenge.";
+        } else {
+          return "You didn't do this challenge.";
+        }
+      }
     },
     watch: {
       screenIndex: function() { this.saveUserData() }
