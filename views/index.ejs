@@ -15,12 +15,12 @@
         type=button 
         onclick="window.location.href='/info'">I</button>
       <section v-if="!todaysChallenge">
-        <p>Det finns ingen aktuell utmaning.</p>
+        <p>There is no challenge available right now.</p>
       </section>
       <section v-if="todaysChallenge">
         <section v-show="!todaysChallenge.done">
             <h1>
-              Dagens challenge
+              Today's challenge
             </h1>
             <p class="challenge-text" v-html="todaysChallenge.description"></p>
             <section class="fullscreen-container" v-if="todaysChallenge.fullscreen">
@@ -37,11 +37,11 @@
               </section>
             </section>
             <button type="button" @click="imDone">
-              Jag har gjort dagens challenge!
+              I've done today's challenge!
             </button>
           </section>
           <section v-show="todaysChallenge.done">
-            <p>BRA JOBBAT!</p>
+            <p>HURRAY!</p>
             <img class="challenge-done-image" 
               src="images/together-yellow.png">
           </section>
