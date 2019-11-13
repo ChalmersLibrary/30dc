@@ -41,7 +41,7 @@ const samlStrategy = new SamlStrategy({
   identifierFormat: null
 }, (profile, done) => {
   console.log("passport.use() profile: " + JSON.stringify(profile));
-  return done(null, { id: profile["urn:oid:0.9.2342.19200300.100.1.1"] /* profile["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] */ })
+  return done(null, { id: profile["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] })
 });
 passport.serializeUser((user, done) => {
   console.log("passport.serializeUser() user: " + JSON.stringify(user));
