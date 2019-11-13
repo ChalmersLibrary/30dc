@@ -3,12 +3,85 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const fs = require("fs");
+const passport = require("passport");
+const SamlStrategy = require("passport-saml").Strategy;
+const session = require("express-session");
+
+// Load dev config if suitable.
+try {
+  let config = require("./config.json");
+  for (var prop in config) {
+    if (config.hasOwnProperty(prop)) {
+      process.env[prop] = config[prop];
+    }
+  }
+} catch (err) {
+  console.error("No local config present.");
+}
+
+const SAML_CERT = fs.readFileSync(process.env.CERTFILE_PATH, "utf-8");
+const SAML_PRIVATE_KEY = fs.readFileSync(process.env.KEYFILE_PATH, "utf-8");
+
+const samlStrategy = new SamlStrategy({
+  callbackUrl: process.env.SAML_CALLBACK,
+  entryPoint: process.env.IDP_ENTRYPOINT,
+  issuer: process.env.SAML_ISSUER,
+  acceptedClockSkewMs: -1,
+  decryptionPvk: SAML_PRIVATE_KEY,
+  cert: [ process.env.IDP1_CERT, process.env.IDP2_CERT ],
+  identifierFormat: null
+}, (profile, done) => {
+  console.log("passport.use() profile: " + JSON.stringify(profile));
+  return done(null, { uid: profile["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] })
+});
+passport.serializeUser((user, done) => {
+  console.log("passport.serializeUser() user: " + JSON.stringify(user));
+  done(null, user);
+});
+passport.deserializeUser((user, done) => {
+  console.log("passport.deserializeUser() user: " + JSON.stringify(user));
+  done(null, user);
+});
+passport.use(samlStrategy);
+
 var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+if (process.env.USE_SAML) {
+  app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+}
+app.get("/saml/MetaData", (req, res) => {
+  res.type("application/xml");
+  res.send(samlStrategy.generateServiceProviderMetadata(SAML_CERT));
+});
+app.get("/", (req, res, next) => {
+  if (process.env.USE_SAML) {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      passport.authenticate("saml", {
+        successRedirect: "/",
+        failureRedirect: "login_error.html"
+      })(req, res, next);
+    }
+  } else {
+    next();
+  }
+});
+app.post("/login_callback", 
+  passport.authenticate("saml", {
+    failureRedirect: "login_error.html",
+    failureFlash: true
+  }),
+  (req, res) => {
+    res.redirect("/");
+  });
 app.use(express.static(path.join(__dirname, 'public')));
 
 var debug = require('debug')('30dc:server');
