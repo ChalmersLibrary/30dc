@@ -3,18 +3,20 @@ var router = express.Router();
 var fs = require("fs");
 
 router.post("/", function(req, res, next) {
-  if (req.isAuthenticated() && typeof req.user.id !== "undefined") {
+  let user = req.user || { id:"dummy" };
+  if ((!process.env.USE_SAML || req.isAuthenticated()) && typeof user.id !== "undefined") {
     fs.mkdirSync(process.env.SAVE_LOCATION, { recursive: true });
-    fs.writeFileSync(process.env.SAVE_LOCATION + "/" + req.user.id, JSON.stringify(req.body));
+    fs.writeFileSync(process.env.SAVE_LOCATION + "/" + user.id, JSON.stringify(req.body));
   } else {
     res.status(500).send("Auth error");
   }
 });
 
 router.get("/", function(req, res, next) {
-  if (req.isAuthenticated() && typeof req.user.id !== "undefined") {
+  let user = req.user || { id:"dummy" };
+  if ((!process.env.USE_SAML || req.isAuthenticated()) && typeof user.id !== "undefined") {
     try {
-      let userData = fs.readFileSync(process.env.SAVE_LOCATION + "/" + req.user.id, "utf-8");
+      let userData = fs.readFileSync(process.env.SAVE_LOCATION + "/" + user.id, "utf-8");
       res.json(JSON.parse(userData));
     } catch (error) {
       if (error.message.indexOf("ENOENT") > -1) {

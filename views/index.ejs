@@ -15,7 +15,7 @@
         type=button 
         onclick="window.location.href='/info'">I</button>
       <section v-if="!todaysChallenge">
-        <p>There is no challenge available right now.</p>
+        <p>The next challenge will be available at {{showDate(nextChallengeDate())}}.</p>
       </section>
       <section v-if="todaysChallenge">
         <section v-show="!todaysChallenge.done">
@@ -224,6 +224,20 @@
         } else {
           return "You didn't do this challenge.";
         }
+      },
+      nextChallengeDate: function() {
+        let upcomingChallengeDate;
+        let todaysDate = new Date();
+        let smallestDiff = Number.MAX_VALUE;
+        for (var i=0; i<this.challenges.length; i++) {
+          let date = this.challenges[i].date;
+          let diff = todaysDate - date;
+          if (diff < 0 && Math.abs(diff) < smallestDiff) {
+            smallestDiff = Math.abs(diff);
+            upcomingChallengeDate = date;
+          }
+        }
+        return upcomingChallengeDate;
       }
     },
     watch: {

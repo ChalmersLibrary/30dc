@@ -23,8 +23,13 @@ try {
   console.error("No local config present.");
 }
 
-const SAML_CERT = fs.readFileSync(process.env.CERTFILE_PATH, "utf-8");
-const SAML_PRIVATE_KEY = fs.readFileSync(process.env.KEYFILE_PATH, "utf-8");
+var SAML_CERT;
+var SAML_PRIVATE_KEY;
+
+if (process.env.USE_SAML) {
+  SAML_CERT = fs.readFileSync(process.env.CERTFILE_PATH, "utf-8");
+  SAML_PRIVATE_KEY = fs.readFileSync(process.env.KEYFILE_PATH, "utf-8");
+}
 
 const samlStrategy = new SamlStrategy({
   callbackUrl: process.env.SAML_CALLBACK,
@@ -78,7 +83,7 @@ app.get("/", (req, res, next) => {
   }
 });
 app.get("/login", function(req, res, next) {
-  if (req.isAuthenticated()) {
+  if (!process.env.USE_SAML || req.isAuthenticated()) {
     res.redirect("/");
   } else {
     next();
