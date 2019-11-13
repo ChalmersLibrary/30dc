@@ -93,11 +93,20 @@ button:active {
 }
 
 .top-right-button {
+  border-radius: 2rem;
   position: absolute;
+  padding: 0.4rem;
   width: 3rem;
   height: 3rem;
   top: 0.5rem; 
   right: 0.5rem;
+  font-family: 'Antiqua';
+  font-size: 1.7rem;
+  box-shadow: none;
+  border: solid 0.2rem #f2c230;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fullscreen-element {
