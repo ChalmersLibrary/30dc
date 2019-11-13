@@ -8,6 +8,8 @@ html {
 
 html, body {
   height: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 body {
@@ -118,6 +120,8 @@ button:active {
   flex-direction: column;
   justify-content: center;
   position: relative;
+  box-sizing: border-box;
+  padding: 0.5rem;
 }
 
 .challenge-done-image {

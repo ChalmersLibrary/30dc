@@ -5,42 +5,17 @@ html, body {
   background-color: #075767;
   color: #fcf9ec;
   font-size: 16px;
-  width: 100%;
-  height: 100%;
 }
 
-[v-cloak] {
-  display: none;
+main {
+  margin: 1rem;
 }
 
 h1 {
   font-family: 'Anton', sans-serif;
   color: #f2c230;
   font-size: 1.5rem;
-}
-
-#app {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-img {
-  max-width: 100%;
-}
-
-.answer-container {
-  margin-top: 3em;
-}
-
-input {
-  box-sizing: border-box;
-  display: block;
-  padding: 0.5em;
-  width: 100%;
-  font-size: 1.6em;
+  text-align: center;
 }
 
 button {
@@ -49,17 +24,6 @@ button {
   padding: 0.5em;
   width: 100%;
   font-size: 1.6em;
-}
-
-.screen {
-  margin: 0 1em;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 
 a, a:visited {

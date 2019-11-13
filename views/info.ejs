@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="stylesheets/style.css">
   </head>
   <body>
-    <h1>Information about 30 Day Challenge</h1>
-    <h2>Info</h2>
-    <p>Nånting här...</p>
-    <h2>Din data</h2>
-    <p>Bla bla bla...</p>
-    <% if(user){ %>
-    <button type=button onclick="window.location.href='/login'">Back to 30 Day Challenge</button>
-    <% } else{ %>
-    <button type=button onclick="window.location.href='/login'">Accept and continue to 30 Day Challenge</button>
-    <% } %>
-    <script>
-      localStorage.getItem("30dc-accepted")
-    </script>
+    <main>
+      <h1>About 30 Day Challenge at CLS</h1>
+      <h2>Info</h2>
+      <p>Nånting här...</p>
+      <h2>Din data</h2>
+      <p>Bla bla bla...</p>
+      <% if(user){ %>
+      <button type=button onclick="window.location.href='/login'">Back to 30 Day Challenge</button>
+      <% } else{ %>
+      <button type=button onclick="window.location.href='/login'">Accept and continue to 30 Day Challenge</button>
+      <% } %>
+    </main>
   </body>
 </html>

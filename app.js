@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var apiRouter = require("./routes/api");
 
 const fs = require("fs");
 const passport = require("passport");
@@ -35,7 +36,7 @@ const samlStrategy = new SamlStrategy({
   identifierFormat: null
 }, (profile, done) => {
   console.log("passport.use() profile: " + JSON.stringify(profile));
-  return done(null, { uid: profile["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] })
+  return done(null, { id: profile["urn:oid:0.9.2342.19200300.100.1.1"] /* profile["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] */ })
 });
 passport.serializeUser((user, done) => {
   console.log("passport.serializeUser() user: " + JSON.stringify(user));
@@ -95,6 +96,7 @@ app.post("/login_callback",
     res.redirect("/");
   });
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/api", apiRouter);
 app.use('/', indexRouter);
 
 var debug = require('debug')('30dc:server');
