@@ -23,19 +23,6 @@
               Today's challenge
             </h1>
             <p class="challenge-text" v-html="todaysChallenge.description"></p>
-            <section class="fullscreen-container" v-if="todaysChallenge.fullscreen">
-              <section v-show="!todaysChallenge.fullscreen.visible">
-                <a href="#" @click.prevent="todaysChallenge.fullscreen.visible = true">{{ todaysChallenge.fullscreen.linkDescription }}</a>
-              </section>
-              <section class="fullscreen-element" v-if="todaysChallenge.fullscreen.visible">
-                <button 
-                  type=button
-                  class="top-right-button"
-                  @click="todaysChallenge.fullscreen.visible = false">X</button>
-                <img class="fullscreen-image" v-if="todaysChallenge.fullscreen.imageSource" 
-                  :src="todaysChallenge.fullscreen.imageSource">
-              </section>
-            </section>
             <button type="button" @click="imDone">
               I've done today's challenge!
             </button>
@@ -44,6 +31,7 @@
             <p>{{getDailyCompletionString()}}</p>
             <img class="challenge-done-image" 
               src="images/together-yellow.png">
+            <p>Share your progress <a href="https://hub.lib.chalmers.se/c/utveckling/30-day-challenge">here</a> if you want.</p>
           </section>
       </section>
       <section>
@@ -87,7 +75,7 @@
       screenIndex: 0,
       missionDetailIndex: 0,
       challenges: [
-        { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 10, 15), done: false },
+        { description: "Try the method <a href=\"https://en.wikipedia.org/wiki/Five_whys\">Five whys</a>.", date: new Date(2019, 10, 13), done: false },
         { description: "Find a bunch of people and try to solve something by using the method <a href\"/reverse-brainstorming\">Reverse Brainstorming.</a>", date: new Date(2019, 10, 16), done: false },
         { description: "Update your info at <a href=\"https://admin.chalmers.se/en/_layouts/chalmersPublicWeb/profilePage.aspx\">chalmers.se</a> so that the info is correct.", fullscreen: { imageSource:"images/30DC.gif", linkDescription:"Click here to see how.", visible:false }, date: new Date(2019, 10, 17), done: false },
         { description: "Try mindfulness. If you want, you can try one of <a href=\"https://www.mindful.org/audio-resources-for-mindfulness-meditation/\">these</a> audio guided meditations.", date: new Date(2019, 10, 18), done: false },
