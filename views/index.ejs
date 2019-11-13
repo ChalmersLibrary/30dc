@@ -11,17 +11,9 @@
 <body>
   <main id="app">
     <section class="screen" v-if="screenIndex === 0">
-      <h1>Information om 30 Day Challenge</h1>
-      <h2>Info</h2>
-      <p>Nånting här...</p>
-      <h2>Din data</h2>
-      <p>Bla bla bla...</p>
-      <button type=button @click="goToScreen(1)">Continue to 30 Day Challenge</button>
-    </section>
-    <section class="screen" v-if="screenIndex === 1">
       <button class="top-right-button" 
         type=button 
-        @click="goToScreen(0)">I</button>
+        onclick="window.location.href='/info'">I</button>
       <section v-if="!todaysChallenge">
         <p>Det finns ingen aktuell utmaning.</p>
       </section>
@@ -64,14 +56,14 @@
         </section>
       </section>
     </section>
-    <section class="mission-details" class="screen" v-if="screenIndex === 2">
+    <section class="mission-details" class="screen" v-if="screenIndex === 1">
         <h1>Challenge number {{missionDetailIndex+1}}</h1>
         <p><strong><u>Challenge description:</u></strong> <span v-html="challenges[missionDetailIndex].description"></span></p>
         <p><strong><u>Date:</u></strong> {{challenges[missionDetailIndex].date}}</p>
         <p><strong><u>Completion:</u></strong> {{challenges[missionDetailIndex].done}}</p>
         <button  
         type=button 
-        @click="goToScreen(1)">Back to 30 Day Challenge</button>
+        @click="goToScreen(0)">Back to 30 Day Challenge</button>
     </section>
   </main>
 
@@ -182,7 +174,7 @@
       },
       showMissionData: function(missionIndex){
         this.missionDetailIndex = missionIndex;
-        this.goToScreen(2);
+        this.goToScreen(1);
       //},
         //showDate: function(date){
           //return toDateString(date);

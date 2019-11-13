@@ -3,6 +3,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var indexRouter = require('./routes/index');
+
 const fs = require("fs");
 const passport = require("passport");
 const SamlStrategy = require("passport-saml").Strategy;
@@ -47,6 +49,9 @@ passport.use(samlStrategy);
 
 var app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -65,15 +70,22 @@ app.get("/", (req, res, next) => {
     if (req.isAuthenticated()) {
       next();
     } else {
-      passport.authenticate("saml", {
-        successRedirect: "/",
-        failureRedirect: "login_error.html"
-      })(req, res, next);
+      res.redirect("/info");
     }
   } else {
     next();
   }
 });
+app.get("/login", function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+}, passport.authenticate("saml", {
+  successRedirect: "/",
+  failureRedirect: "login_error.html"
+}));
 app.post("/login_callback", 
   passport.authenticate("saml", {
     failureRedirect: "login_error.html",
@@ -83,6 +95,7 @@ app.post("/login_callback",
     res.redirect("/");
   });
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', indexRouter);
 
 var debug = require('debug')('30dc:server');
 var http = require('http');
