@@ -84,14 +84,6 @@ button:active {
   border: solid 0.4rem #f2c230;
 }
 
-.fullscreen-container {
-  margin-bottom: 2rem;
-}
-
-.fullscreen-image {
-  width: 100%;
-}
-
 .top-right-button {
   border-radius: 2rem;
   position: absolute;
@@ -104,19 +96,6 @@ button:active {
   font-size: 1.7rem;
   box-shadow: none;
   border: solid 0.2rem #f2c230;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.fullscreen-element {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  background-color: #1e1e1e;
   display: flex;
   justify-content: center;
   align-items: center;

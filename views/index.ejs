@@ -10,7 +10,7 @@
 
 <body>
   <main id="app">
-    <section class="screen" v-if="screenIndex === 0">
+    <section class="screen" v-if="!errorMessage && screenIndex === 0">
       <button class="top-right-button" 
         type=button 
         onclick="window.location.href='/info'"><section>i</section></button>
@@ -23,19 +23,6 @@
               Today's challenge
             </h1>
             <p class="challenge-text" v-html="todaysChallenge.description"></p>
-            <section class="fullscreen-container" v-if="todaysChallenge.fullscreen">
-              <section v-show="!todaysChallenge.fullscreen.visible">
-                <a href="#" @click.prevent="todaysChallenge.fullscreen.visible = true">{{ todaysChallenge.fullscreen.linkDescription }}</a>
-              </section>
-              <section class="fullscreen-element" v-if="todaysChallenge.fullscreen.visible">
-                <button 
-                  type=button
-                  class="top-right-button"
-                  @click="todaysChallenge.fullscreen.visible = false">X</button>
-                <img class="fullscreen-image" v-if="todaysChallenge.fullscreen.imageSource" 
-                  :src="todaysChallenge.fullscreen.imageSource">
-              </section>
-            </section>
             <button type="button" @click="imDone">
               I've done today's challenge!
             </button>
@@ -44,6 +31,7 @@
             <p>{{getDailyCompletionString()}}</p>
             <img class="challenge-done-image" 
               src="images/together-yellow.png">
+            <p>Share your progress <a href="https://hub.lib.chalmers.se/c/utveckling/30-day-challenge">here</a> if you want.</p>
           </section>
       </section>
       <section>
@@ -56,16 +44,21 @@
         </section>
       </section>
     </section>
-    <section class="mission-details screen" v-if="screenIndex === 1">
-        <h1>Challenge number {{missionDetailIndex+1}}</h1>
-        <section>
-          <p><strong><u>Challenge description:</u></strong> <span v-html="challenges[missionDetailIndex].description"></span></p>
-          <p><strong><u>Date:</u></strong> {{showDate(challenges[missionDetailIndex].date)}}</p>
-          <p><strong><u>Status:</u></strong> {{getCompletionString(challenges[missionDetailIndex].done)}}</p>
-        </section>
-        <button  
-        type=button 
-        @click="goToScreen(0)">Back to 30 Day Challenge</button>
+    <section class="mission-details screen" v-if="!errorMessage && screenIndex === 1">
+      <h1>Challenge number {{missionDetailIndex+1}}</h1>
+      <section>
+        <p><strong><u>Challenge description:</u></strong> <span v-html="challenges[missionDetailIndex].description"></span></p>
+        <p><strong><u>Date:</u></strong> {{showDate(challenges[missionDetailIndex].date)}}</p>
+        <p><strong><u>Status:</u></strong> {{getCompletionString(challenges[missionDetailIndex].done)}}</p>
+      </section>
+      <button  
+      type=button 
+      @click="goToScreen(0)">Back to 30 Day Challenge</button>
+    </section>
+    <section class="screen" v-if="errorMessage">
+      <h1>Error</h1>
+      <p>{{errorMessage}}</p>
+      <p>Try to reload the page and contact us if the problem persists.</p>
     </section>
   </main>
 
@@ -77,6 +70,7 @@
   var app = new Vue({
     el: '#app',
     data: {
+      errorMessage: "",
       fullUserData: {},
       screenIndex: 0,
       missionDetailIndex: 0,
@@ -149,7 +143,7 @@
         xhr.open("GET", "/api");
         xhr.onload = function() {
           if (xhr.status !== 200) {
-            // TODO: SHOW ERROR
+            this.errorMessage = "Load error " + xhr.status + ": " + xhr.statusText; 
           } else {
             try {
               this.fullUserData = JSON.parse(xhr.response);
@@ -164,13 +158,13 @@
                 }
               }
             } catch (error) {
-              // TODO: SHOW ERROR
+              this.errorMessage = "Failed to parse user data: " + error.message;
             }
           }
         }.bind(this);
         xhr.onerror = function() {
-          // TODO: SHOW ERROR
-        }
+          this.errorMessage = "Load request failed";
+        }.bind(this);
         xhr.send();
       },
       saveUserData: function() {
@@ -193,12 +187,12 @@
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onload = function() {
           if (xhr.status !== 200) {
-            // TODO: SHOW ERROR
+            this.errorMessage = "Save error " + xhr.status + ": " + xhr.statusText; 
           }
-        }
+        }.bind(this);
         xhr.onerror = function() {
-          // TODO: SHOW ERROR
-        }
+          this.errorMessage = "Save request failed.";
+        }.bind(this);
         xhr.send(JSON.stringify(this.fullUserData));
       },
       goToScreen: function(index) {
