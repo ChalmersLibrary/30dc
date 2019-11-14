@@ -9,7 +9,9 @@ router.post("/", function(req, res, next) {
     let hash = crypto.createHash("sha256");
     let obfuscatedId = hash.update(user.id).digest("hex");
     fs.mkdirSync(process.env.SAVE_LOCATION, { recursive: true });
-    fs.writeFileSync(process.env.SAVE_LOCATION + "/" + obfuscatedId, JSON.stringify(req.body));
+    let data = req.body;
+    data.changed = new Date();
+    fs.writeFileSync(process.env.SAVE_LOCATION + "/" + obfuscatedId, JSON.stringify(data));
   } else {
     res.status(500).send("Auth error");
   }
