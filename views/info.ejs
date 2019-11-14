@@ -17,11 +17,23 @@
       <h2>Your data</h2>
       <p>By accepting and signing in to 30 Day Challenge we will get access to your cid, full name and email.</p>
       <p>We will store data about your progress in 30 Day Challenge on our server which is located in Northern Europe.</p>
-      <% if(user){ %>
-      <button type=button onclick="window.location.href='/login'">Back to 30 Day Challenge</button>
-      <% } else{ %>
-      <button type=button onclick="window.location.href='/login'">Accept and continue to 30 Day Challenge</button>
-      <% } %>
+      <p>We will also store data and a cookie on your machine to be able to see that you have logged in and that you have accepted our data handling.</p>
+      <p>Contact us if you want to have your data removed.</p>
+      <button id="login-button" type=button>Accept and continue to 30 Day Challenge</button>
     </main>
+    <script>
+      let dataPlanAcceptedServer = <%= dataPlanAccepted %>;
+
+      let dataPlanAccepted = dataPlanAcceptedServer;
+
+      if (dataPlanAccepted) {
+        document.getElementById("login-button").innerHTML = "Go to 30 Day Challenge";
+      }
+
+      document.getElementById("login-button").addEventListener("click", function() {
+        localStorage.setItem("30dc-cls-data-accept", 1);
+        window.location.href="/login";
+      });
+    </script>
   </body>
 </html>

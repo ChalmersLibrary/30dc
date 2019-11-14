@@ -40,15 +40,14 @@ const samlStrategy = new SamlStrategy({
   cert: [ process.env.IDP1_CERT, process.env.IDP2_CERT ],
   identifierFormat: null
 }, (profile, done) => {
-  console.log("passport.use() profile: " + JSON.stringify(profile));
-  return done(null, { id: profile["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"] })
+  let profileIdPropertyName = process.env.PROFILE_PROPERTY_FOR_ID || 
+    "urn:oid:1.3.6.1.4.1.5923.1.1.1.6";
+  return done(null, { id: profile[profileIdPropertyName] })
 });
 passport.serializeUser((user, done) => {
-  console.log("passport.serializeUser() user: " + JSON.stringify(user));
   done(null, user);
 });
 passport.deserializeUser((user, done) => {
-  console.log("passport.deserializeUser() user: " + JSON.stringify(user));
   done(null, user);
 });
 passport.use(samlStrategy);
