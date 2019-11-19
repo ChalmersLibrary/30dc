@@ -219,3 +219,9 @@ a, a:visited {
   100%  { bottom: 0 }
 }
 
+@media screen and (min-width: 1024px) {
+  body {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}

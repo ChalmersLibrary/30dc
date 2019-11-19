@@ -1,0 +1,227 @@
+html, body {
+    margin: 0; 
+    padding: 0;
+    font-family: 'Merriweather', serif;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  [v-cloak] {
+    display: none;
+  }
+  
+  #app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  .answer-container {
+    margin-top: 3em;
+  }
+  
+  input {
+    box-sizing: border-box;
+    display: block;
+    padding: 0.5em;
+    width: 100%;
+    font-size: 1.6em;
+  }
+  
+  button {
+    box-sizing: border-box;
+    display: block;
+    padding: 0.5em;
+    width: 100%;
+    font-size: 1.6em;
+  }
+  
+  .screen {
+    margin: 0 1em;
+  }
+  
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  
+  .missed-call__number:link,
+  .missed-call__number:visited,
+  .missed-call__number:hover,
+  .missed-call__number:active {
+    color: black;
+  }
+  
+  a, a:visited {
+    color: #f0f0f0;
+  }
+  
+  .profile-picture {
+    border-radius: 50%;
+    background-color: #d0d0d0;
+    width: 20%;
+  }
+  
+  .missed-call {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+  }
+  
+  .missed-call__header {
+    background-color: #f0f0f0;
+    width: 100%;
+    padding: 0.2rem;
+    color: black;
+    box-sizing: border-box;
+  }
+  
+  .missed-call__main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .missed-call__right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 70%;
+    padding: 0 1.6rem;
+    box-sizing: border-box;
+  }
+  
+  .missed-call__right-container {
+    color: black;
+  }
+  
+  .chat {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chat__header {
+    background-color: #7FB539;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+    padding: 1rem 0;
+    box-sizing: border-box;
+  }
+  
+  .chat__message-log {
+    background-color: #d0d0d0;
+    color: black;
+    width: 100%;
+    flex: 1;
+    box-sizing: border-box;
+    overflow: scroll;
+  }
+  
+  .chat-message--from-me {
+    text-align: right;
+  }
+  
+  .chat-message__inner-container {
+    display: inline-block;
+    max-width: 60%;
+    background-color: #ffffff;
+    color: black;
+    padding: 0.8rem;
+    margin: 0.4rem;
+    border-radius: 0.6rem;
+  }
+  
+  .chat-message__inner-container--from-me {
+    background-color: #00A99D;
+    color: white;
+  }
+  
+  .chat__message-box {
+    width: 100%;
+    height: 4rem;
+    box-sizing: border-box;
+    background-color: #7FB539;
+    display: flex;
+  }
+  
+  .chat__message-input {
+    width: 80%;
+    height: 100%;
+  }
+  
+  .chat__send-button {
+    width: 20%;
+    height: 100%;
+  }
+  
+  .chat-message__pending-write {
+    font-weight: bold;
+  }
+  
+  .pending-write__dot {
+    position: relative;
+  }
+  
+  .pending-write__dot--first {
+    animation: pending-write-dot1 3s infinite;
+  }
+  
+  .pending-write__dot--second {
+    animation: pending-write-dot2 3s infinite;
+  }
+  
+  .pending-write__dot--third {
+    animation: pending-write-dot3 3s infinite;
+  }
+  
+  @keyframes pending-write-dot1 {
+    0%    { bottom: 0 }
+    38%   { bottom: 1rem }
+    76%   { bottom: 0 }
+    100%  { bottom: 0 }
+  }
+  
+  @keyframes pending-write-dot2 {
+    0%    { bottom: 0 }
+    12%   { bottom: 0 }
+    50%   { bottom: 1rem }
+    88%   { bottom: 0 }
+    100%  { bottom: 0 }
+  }
+  
+  @keyframes pending-write-dot3 {
+    0%    { bottom: 0 }
+    24%   { bottom: 0 }
+    62%   { bottom: 1rem }
+    100%  { bottom: 0 }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    body {
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+  }

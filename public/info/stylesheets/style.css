@@ -29,3 +29,10 @@ button {
 a, a:visited {
   color: #f0f0f0;
 }
+
+@media screen and (min-width: 1024px) {
+  body {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
