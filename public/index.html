@@ -95,7 +95,7 @@
         <img src="/images/info.gif">
       </section>
       <input type=text v-model="userId" placeholder="Enter user ID here">
-      <button type=button @click="startWithExisting()" :disabled="!userId">Start with this account</button>
+      <button type=button @click="startWithExisting()">Start with this account</button>
       <button type=button @click="goBackFromStartWithExisting()">Go back</button>
       <p>{{loadExistingUserResponse}}</p>
     </section>
@@ -315,6 +315,7 @@
         this.goToScreen(1);
       },
       startWithExisting: function() {
+        this.userId = this.userId.toLowerCase();
         this.loadExistingUserResponse = "";
         if (this.userId) {
           let xhr = new XMLHttpRequest();
@@ -334,7 +335,7 @@
           }.bind(this);
           xhr.send();
         } else {
-          this.loadExistingUserResponse = "No user id given.";
+          this.loadExistingUserResponse = "No user id entered.";
           this.userId = "";
         }
       },
