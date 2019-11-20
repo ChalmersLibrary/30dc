@@ -94,7 +94,7 @@
       <section>
         <img src="/images/info.gif">
       </section>
-      <input type=text v-model="userId" placeholder="Enter user ID here">
+      <input type=text v-model="userId" placeholder="Enter user ID here" @keyup="startWithExisting()">
       <button type=button @click="startWithExisting()">Start with this account</button>
       <button type=button @click="goBackFromStartWithExisting()">Go back</button>
       <p>{{loadExistingUserResponse}}</p>
