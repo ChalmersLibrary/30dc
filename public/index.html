@@ -63,7 +63,7 @@
             <p>{{getDailyCompletionString()}}</p>
             <img class="challenge-done-image" 
               src="images/together-yellow.png">
-            <p>Share your progress <a href="https://hub.lib.chalmers.se/c/utveckling/30-day-challenge">here</a> if you want.</p>
+            <p>Share your progress <a :href="shareUrl">here</a> if you want.</p>
           </section>
       </section>
       <section>
@@ -181,6 +181,10 @@
           result = this.challenges[index];
         }
         return result;
+      },
+      shareUrl: function() {
+        let baseUrl = "https://hub.lib.chalmers.se/t/30-day-challenge-1-";
+        return baseUrl + (this.todaysChallengeIndex + 1);
       }
     },
     methods: {
