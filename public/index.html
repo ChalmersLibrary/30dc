@@ -46,7 +46,7 @@
       <button class="top-right-button" 
         type=button 
         @click="goToScreen(0)"><section>i</section></button>
-      <section v-if="!todaysChallenge">
+      <section v-if="!todaysChallenge && nextChallengeDate()">
         <p>The next challenge will be available at {{showDate(nextChallengeDate())}} 07:00.</p>
       </section>
       <section v-if="todaysChallenge">
@@ -281,9 +281,13 @@
         }
       },
       showDate: function(date){
-        return "" + date.getFullYear() + "-" +
-          (date.getMonth()+1).toString().padStart(2, "0") + "-" +
-          date.getDate().toString().padStart(2, "0");
+        let res = "N/A";
+        if (date) {
+          res = "" + date.getFullYear() + "-" +
+            (date.getMonth()+1).toString().padStart(2, "0") + "-" +
+            date.getDate().toString().padStart(2, "0");
+        }
+        return res;
       },
       getDailyCompletionString: function(){
 	      var randomCompletionsArray = ["Great work!", "Nicely done! Good luck on the next challenge.", "Complete! Hope it was fun!", "Perfect!", "Wow! Good Job!", "Hurray!", "Good job!", "Yay!", "Awesome! Success doesn’t just find you. You have to go out and get it.", "Nicely done! Don’t wait for the opportunity. Create it.", "Perseverance and spirit have done wonders in all ages. - George Washington"];
