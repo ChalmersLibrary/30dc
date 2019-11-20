@@ -3,7 +3,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
 var apiRouter = require("./routes/api");
 
 const fs = require("fs");
@@ -61,36 +60,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-if (process.env.USE_SAML) {
-  app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-}
 app.get("/saml/MetaData", (req, res) => {
   res.type("application/xml");
   res.send(samlStrategy.generateServiceProviderMetadata(SAML_CERT));
 });
-app.get("/", (req, res, next) => {
-  if (process.env.USE_SAML) {
-    if (req.isAuthenticated()) {
-      next();
-    } else {
-      res.redirect("/info");
-    }
-  } else {
-    next();
-  }
-});
-app.get("/login", function(req, res, next) {
-  if (!process.env.USE_SAML || req.isAuthenticated()) {
-    res.redirect("/");
-  } else {
-    next();
-  }
-}, passport.authenticate("saml", {
-  successRedirect: "/",
-  failureRedirect: "login_error.html"
-}));
 app.post("/login_callback", 
   passport.authenticate("saml", {
     failureRedirect: "login_error.html",
@@ -101,7 +74,6 @@ app.post("/login_callback",
   });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/api", apiRouter);
-app.use('/', indexRouter);
 
 var debug = require('debug')('30dc:server');
 var http = require('http');

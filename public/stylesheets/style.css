@@ -45,12 +45,19 @@ button {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 button:active {
   transform: translateY(0.2rem);
   box-shadow: 0 0.3rem 0 #b0941c;
+}
+
+button:disabled {
+  transform: translateY(0);
+  box-shadow: none;
+  background-color: #909090;
+  background-image: none;
 }
 
 .challenge-text {
@@ -119,6 +126,43 @@ button:active {
 
 .mission-details {  
   text-align: left;
+}
+
+.info-screen {
+  display: block;
+  text-align: left;
+}
+
+.info-screen input[type=checkbox] {
+  margin: 0 1rem 0 0;
+}
+
+.info-screen h1 {
+  text-align: center;
+}
+
+.info-screen h2 {
+  margin: 2rem 0 0 0;
+}
+
+.info-screen p {
+  margin: 0 0 1rem 0;
+}
+
+.data-accept__outer-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+input[type=text] {
+  font-size: 2rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.user-id-viewer {
+  text-align: center;
+  padding: 2rem 0;
 }
 
 @media screen and (min-width: 1024px) {
