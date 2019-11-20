@@ -94,7 +94,7 @@
       <section>
         <img src="/images/info.gif">
       </section>
-      <input type=text v-model="userId" placeholder="Enter user ID here" @keyup="startWithExisting()">
+      <input type=text v-model="userId" placeholder="Enter user ID here" @keyup="loadExistingKeyUp">
       <button type=button @click="startWithExisting()">Start with this account</button>
       <button type=button @click="goBackFromStartWithExisting()">Go back</button>
       <p>{{loadExistingUserResponse}}</p>
@@ -342,6 +342,12 @@
       goBackFromStartWithExisting: function() {
         this.userId = "";
         this.goToScreen(0);
+      },
+      loadExistingKeyUp: function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          this.startWithExisting();
+        }
       }
     }
   })
