@@ -39,7 +39,13 @@ let saveData = function(req, res) {
   try {
     let userId = req.params.id;
 
-    fs.mkdirSync(process.env.SAVE_LOCATION, { recursive: true });
+    try {
+      fs.mkdirSync(process.env.SAVE_LOCATION, { recursive: true });
+    } catch (err) {
+      if (err.code !== "EEXIST") {
+        throw new Error("Failed to create data folder: " + err.message)
+      }
+    }
   
     if (!userId) {
       userId = generateId();
