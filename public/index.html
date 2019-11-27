@@ -32,8 +32,8 @@
               :disabled="dataPlanAcceptingLocked">I accept the handling of my data
           </label>
         </section>
-        <button type=button :disabled="!dataPlanAccepted" @click="start()">Start with new account</button>
-        <button type=button @click="goToScreen(3)">I already have an account</button>
+        <button type=button :disabled="!dataPlanAccepted" @click="start()">Start as a new user</button>
+        <button type=button @click="goToScreen(3)">Continue as an existing user</button>
       </section>
       <section class="user-id-viewer" v-if="userId">
         <p>Your ID: {{userId}}</p>
