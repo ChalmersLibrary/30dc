@@ -93,7 +93,7 @@ button:disabled {
 
 .top-right-button {
   border-radius: 2rem;
-  position: absolute;
+  position: fixed;
   padding: 0.4rem;
   width: 3rem;
   height: 3rem;
