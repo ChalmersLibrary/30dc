@@ -32,10 +32,10 @@
           <section class="answer-container">
             <input 
               type=text 
-              placeholder="Mata in vem det är här" 
+              placeholder="Enter who it is here" 
               v-model="answer"
               @keyup="keyUp">
-            <button type=button @click="submitAnswer">Svara</button>
+            <button type=button @click="submitAnswer">Answer</button>
           </section>
         </section>
         <section class="screen chat" v-if="challengeIndex === 1" key=2>
