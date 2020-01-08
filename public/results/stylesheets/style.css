@@ -38,7 +38,7 @@ main {
 ol {
   margin:0;
   text-align: left;
-  padding-inline-start: 2rem;
+  padding-inline-start: 1.4rem;
 }
 
 .firstResult {
@@ -68,7 +68,7 @@ a {
 }
 
 .viz-box {
-  padding: 2rem 0.2rem;
+  padding: 2rem 2vw;
   border: solid 1px #f2c230;
   box-sizing: border-box;
   display: flex;
