@@ -1,0 +1,86 @@
+html {
+  font-family: 'Merriweather', serif;
+  background-color: #075767;
+  color: #fcf9ec;
+  font-size: 5vw;
+  text-align: center;
+}
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  color: #f2c230;
+  font-size: 1.5rem;
+  margin: 0.2rem;
+}
+
+.firstResultText {
+  margin-top: -10vw;
+}
+
+.secondResultText {
+  margin-top: -15vw;
+}
+
+ol {
+  margin-top:-2vw;
+  text-align: left;
+}
+
+.firstResult {
+  font-size: 60vw;
+  margin: 0;
+  margin-top: -10vw;
+}
+
+.secondResult {
+  font-size: 85vw;
+  margin: 0;
+  margin-top: -15vw;
+}
+
+.thirdResult {
+  font-size: 31vw;
+  margin: 0;
+  margin-top: -3vw;
+}
+
+a {
+  color: #dedbcc;
+}
+
+.challenge-text {
+  text-align: center;
+  margin-top: 0;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+input[type=text] {
+  font-size: 2rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+
+@media screen and (min-width: 1024px) {
+  body {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
