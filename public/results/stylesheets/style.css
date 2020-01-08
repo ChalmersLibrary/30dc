@@ -1,86 +1,80 @@
 html {
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   background-color: #075767;
   color: #fcf9ec;
-  font-size: 5vw;
+  font-size: 24px;
   text-align: center;
 }
 
-html, body, #app {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+html, body {
   margin: 0;
+  text-align: center;
+}
+
+body {
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 h1 {
   font-family: 'Anton', sans-serif;
   color: #f2c230;
   font-size: 1.5rem;
-  margin: 0.2rem;
+  margin: 0;
+  padding: 1rem 0;
+  box-sizing: border-box;
 }
 
-.firstResultText {
-  margin-top: -10vw;
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
-.secondResultText {
-  margin-top: -15vw;
+.result-text {
+  margin: 0;
+  margin-top: 0.6rem;
 }
 
 ol {
-  margin-top:-2vw;
+  margin:0;
   text-align: left;
+  padding-inline-start: 2rem;
 }
 
 .firstResult {
-  font-size: 60vw;
   margin: 0;
-  margin-top: -10vw;
+  font-size: 8rem;
+  line-height: 4.6rem;
+  height: 5.2rem;
 }
 
 .secondResult {
-  font-size: 85vw;
   margin: 0;
-  margin-top: -15vw;
+  font-size: 11rem;
+  line-height: 7.2rem;
+  height: 9.4rem;
 }
 
 .thirdResult {
-  font-size: 31vw;
   margin: 0;
-  margin-top: -3vw;
+  font-size: 3rem;
 }
 
 a {
   color: #dedbcc;
 }
 
-.challenge-text {
-  text-align: center;
-  margin-top: 0;
-}
-
-.screen {
-  width: 100%;
-  height: 100%;
+.viz-box {
+  padding: 1rem 0.2rem;
+  border: solid 1px #f2c230;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  padding: 0.5rem;
+  align-items: center;
 }
 
-input[type=text] {
-  font-size: 2rem;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-}
-
-
-@media screen and (min-width: 1024px) {
-  body {
-    max-width: 1024px;
-    margin: 0 auto;
-  }
+.feedback {
+  padding: 0 1rem;
+  font-size: 1.6rem;
 }
