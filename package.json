@@ -10,8 +10,6 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-session": "^1.17.0",
-    "morgan": "~1.9.1",
-    "passport": "^0.4.0",
-    "passport-saml": "^1.2.0"
+    "morgan": "~1.9.1"
   }
 }
